@@ -9,6 +9,6 @@
 Ni kan skapa en local branch och byta till den med ```git checkout -b <branchname>```
 och om ni vill pusha denna till github skriver ni ```git push origin <branchname>```
 
-Vill ni istället pusha till master så är det bara att ange "master" som <branchname>.
+Vill ni istället pusha till master så är det bara att ange "master" som branchname.
 
 Fler kommandon: https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html
