@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -17,12 +20,19 @@
    <children>
       <AnchorPane prefHeight="800.0" prefWidth="1280.0">
          <children>
-            <SplitPane dividerPositions="0.10275689223057644" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.08145363408521303" orientation="VERTICAL" prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="1278.0">
+                     <children>
+                        <ImageView fitHeight="62.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextField layoutX="205.0" layoutY="19.0" prefHeight="25.0" prefWidth="366.0" />
+                        <Button layoutX="841.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Tidigare Köp" />
+                        <Button layoutX="1058.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Varukorg" />
+                     </children>
+                  </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <SplitPane dividerPositions="0.17996870109546165" prefHeight="713.0" prefWidth="1280.0">
+                        <SplitPane dividerPositions="0.162754303599374" prefHeight="713.0" prefWidth="1280.0">
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
