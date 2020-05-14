@@ -276,7 +276,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="474.0" layoutY="114.0" prefHeight="39.0" prefWidth="220.0" text="11 kr/st">
+                                    <Label fx:id="detailPrice" layoutX="474.0" layoutY="114.0" prefHeight="39.0" prefWidth="220.0" text="11 kr/st">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -287,7 +287,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Button>
-                                    <TextArea layoutX="47.0" layoutY="318.0" prefHeight="123.0" prefWidth="919.0" text="LA DI DA" />
+                                    <TextArea fx:id="detailFacts" editable="false" layoutX="47.0" layoutY="318.0" prefHeight="123.0" prefWidth="919.0" text="LA DI DA" wrapText="true" />
                                     <Label layoutX="47.0" layoutY="279.0" prefHeight="39.0" prefWidth="330.0" text="Produktfakta">
                                        <font>
                                           <Font size="18.0" />
@@ -298,7 +298,7 @@
                                           <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <TextArea layoutX="47.0" layoutY="489.0" prefHeight="123.0" prefWidth="919.0" text="1&#10;2&#10;3&#10;" />
+                                    <TextArea fx:id="detailContent" editable="false" layoutX="47.0" layoutY="489.0" prefHeight="123.0" prefWidth="919.0" text="1&#10;2&#10;3&#10;" wrapText="true" />
                                     <Button layoutX="919.0" layoutY="14.0" mnemonicParsing="false" onAction="#stackPaneBack" prefHeight="44.0" prefWidth="129.0" text="Tillbaka" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="27.0">
                                        <font>
                                           <Font size="20.0" />
