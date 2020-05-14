@@ -26,9 +26,9 @@
                <children>
                   <ImageView fitHeight="62.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField layoutX="279.0" layoutY="20.0" prefHeight="26.0" prefWidth="451.0" />
-                  <Button layoutX="750.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" text="Tidigare Köp" />
+                  <Button layoutX="750.0" layoutY="20.0" mnemonicParsing="false" onAction="#goEarlierShoppingCarts" prefHeight="25.0" prefWidth="240.0" text="Tidigare Köp" />
                   <Button layoutX="1010.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="240.0" text="Varukorg" />
-                  <Button layoutX="234.0" layoutY="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="?" />
+                  <Button layoutX="234.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToSupport" prefHeight="25.0" prefWidth="25.0" text="?" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -39,12 +39,12 @@
                            <children>
                               <Accordion prefHeight="632.0" prefWidth="188.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <panes>
-                                    <TitledPane collapsible="false" expanded="false" onMouseClicked="#goToSupport" prefHeight="36.0" prefWidth="206.0" text="Så här handlar du">
+                                    <TitledPane collapsible="false" expanded="false" prefHeight="36.0" prefWidth="206.0" text="Så här handlar du">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Populärt">
+                                    <TitledPane collapsible="false" onMouseClicked="#goToShopView" prefHeight="200.0" prefWidth="200.0" text="Populärt">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -128,49 +128,6 @@
                         </AnchorPane>
                         <StackPane fx:id="mainViewStackPane" prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <AnchorPane fx:id="detailView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
-                                 <children>
-                                    <ImageView fitHeight="240.0" fitWidth="320.0" layoutX="44.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
-                                    <Label fx:id="detailProductLabel" alignment="TOP_LEFT" layoutX="474.0" layoutY="33.0" prefHeight="39.0" prefWidth="394.0" text="Varunamn">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="474.0" layoutY="72.0" prefHeight="27.0" prefWidth="82.0" text="Eldorado">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="474.0" layoutY="114.0" prefHeight="39.0" prefWidth="220.0" text="11 kr/st">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <Spinner layoutX="474.0" layoutY="248.0" prefHeight="30.0" prefWidth="64.0" />
-                                    <Button layoutX="555.0" layoutY="248.0" mnemonicParsing="false" text="Lägg till">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Button>
-                                    <TextArea layoutX="47.0" layoutY="318.0" prefHeight="123.0" prefWidth="919.0" text="LA DI DA" />
-                                    <Label layoutX="47.0" layoutY="279.0" prefHeight="39.0" prefWidth="330.0" text="Produktfakta">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="47.0" layoutY="450.0" prefHeight="39.0" prefWidth="330.0" text="Näringsinnehåll">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <TextArea layoutX="47.0" layoutY="489.0" prefHeight="123.0" prefWidth="919.0" text="1&#10;2&#10;3&#10;" />
-                                    <Button layoutX="919.0" layoutY="14.0" mnemonicParsing="false" onAction="#stackPaneBack" prefHeight="44.0" prefWidth="129.0" text="Tillbaka" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="27.0">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane fx:id="earlierShoppingCarts" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
                                  <children>
                                     <Label layoutX="14.0" layoutY="42.0" prefHeight="54.0" prefWidth="178.0" text="Tidigare köp">
@@ -304,6 +261,49 @@
                                           </FlowPane>
                                        </content>
                                     </ScrollPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="detailView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+                                 <children>
+                                    <ImageView fx:id="productImg" fitHeight="240.0" fitWidth="320.0" layoutX="44.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" />
+                                    <Label fx:id="detailProductLabel" alignment="TOP_LEFT" layoutX="474.0" layoutY="33.0" prefHeight="39.0" prefWidth="394.0" text="Varunamn">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="474.0" layoutY="72.0" prefHeight="27.0" prefWidth="82.0" text="Eldorado">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="474.0" layoutY="114.0" prefHeight="39.0" prefWidth="220.0" text="11 kr/st">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner layoutX="474.0" layoutY="248.0" prefHeight="30.0" prefWidth="64.0" />
+                                    <Button layoutX="555.0" layoutY="248.0" mnemonicParsing="false" text="Lägg till">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <TextArea layoutX="47.0" layoutY="318.0" prefHeight="123.0" prefWidth="919.0" text="LA DI DA" />
+                                    <Label layoutX="47.0" layoutY="279.0" prefHeight="39.0" prefWidth="330.0" text="Produktfakta">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="47.0" layoutY="450.0" prefHeight="39.0" prefWidth="330.0" text="Näringsinnehåll">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea layoutX="47.0" layoutY="489.0" prefHeight="123.0" prefWidth="919.0" text="1&#10;2&#10;3&#10;" />
+                                    <Button layoutX="919.0" layoutY="14.0" mnemonicParsing="false" onAction="#stackPaneBack" prefHeight="44.0" prefWidth="129.0" text="Tillbaka" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="27.0">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                               </AnchorPane>
                            </children>

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
@@ -21,6 +22,7 @@ public class Controller implements Initializable {
     @FXML FlowPane productFlowPane;
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView,earlierShoppingCarts,supportView,shopView;
+    @FXML ImageView productImg;
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
@@ -50,6 +52,18 @@ public class Controller implements Initializable {
     @FXML
     private void goToSupport(){
         supportView.toFront();
+    }
+
+    @FXML
+    private void goEarlierShoppingCarts(){
+        earlierShoppingCarts.toFront();
+    }
+    void populateDetailView(Product product){
+        productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
+    }
+    @FXML
+    private void goToShopView(){
+        shopView.toFront();
     }
     @FXML
     private void stackPaneBack(){

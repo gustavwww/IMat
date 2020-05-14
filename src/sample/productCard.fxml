@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="266.0" prefWidth="240.0" style="-fx-border-color: #696969;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseClicked="#goToDetailView" prefHeight="266.0" prefWidth="240.0" style="-fx-border-color: #696969;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Spinner layoutX="44.0" layoutY="210.0" prefHeight="25.0" prefWidth="68.0" AnchorPane.leftAnchor="44.0" />
       <Button layoutX="131.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" text="Lägg till" AnchorPane.rightAnchor="50.599999999999994" />

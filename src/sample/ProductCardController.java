@@ -35,6 +35,12 @@ public class ProductCardController extends AnchorPane {
         productName.setText(product.getName());
         productPrice.setText(product.getPrice() + " " + product.getUnit());
         productImage.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
+
+    }
+    @FXML
+    private void goToDetailView(){
+        parentController.detailView.toFront();
+        parentController.populateDetailView(product);
     }
 }
 
