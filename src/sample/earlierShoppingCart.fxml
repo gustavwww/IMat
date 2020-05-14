@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root fx:id="listOfEarlierCarts" prefHeight="312.0" prefWidth="1032.0" type="AnchorPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane fx:id="listTitledPane" contentDisplay="RIGHT" graphicTextGap="1000.0" prefHeight="310.0" prefWidth="1032.0" text="2020-05-14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <ListView prefHeight="215.0" prefWidth="1030.0" />
+         </content>
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <Label fx:id="totalPrice" contentDisplay="RIGHT" text="TotalPrice">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </graphic>
+      </TitledPane>
+   </children>
+</fx:root>
