@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -23,6 +25,8 @@ public class Controller implements Initializable {
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView,earlierShoppingCarts,supportView,shopView;
     @FXML ImageView productImg;
+    @FXML Label detailProductLabel,detailPrice;
+    @FXML TextArea detailContent,detailFacts;
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
@@ -59,7 +63,19 @@ public class Controller implements Initializable {
         earlierShoppingCarts.toFront();
     }
     void populateDetailView(Product product){
+
         productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
+        detailFacts.setText("ICA Pommes frites Fryst är klassiskt räfflade frittar gjorda av fin potatis. Riktigt" +
+                " bra pommes frites ska ju enligt vissa experter gärna tillagas 3 gånger och helst" +
+                " då slutfriteras efter att ha blivit frysta. Med våra pommes slipper du en massa " +
+                "skalande, skärande och förberedande och sparar du en massa tid. Du kan nu antingen" +
+                " tillaga dem i ugnen eller lägga dem i het olja och fritera.");
+        detailContent.setText("Energi (kcal) 150 kcal, Energi (kJ) 600 kJ, Fett 4.40 g, Varav mättat fett 0.50 g, Kolhydrater 23 g, Varav socker 0.50 g, Fiber 3 g, Protein 2.20 g, Salt 0.10 g");
+        detailProductLabel.setText(product.getName());
+        detailPrice.setText(product.getPrice() + " " + product.getUnit());
+
+
+
     }
     @FXML
     private void goToShopView(){
