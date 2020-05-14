@@ -2,7 +2,12 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.web.WebHistory;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
@@ -14,7 +19,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     @FXML FlowPane productFlowPane;
-
+    @FXML StackPane mainViewStackPane;
+    @FXML AnchorPane detailView,earlierShoppingCarts,supportView,shopView;
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
@@ -36,6 +42,20 @@ public class Controller implements Initializable {
         for (Product product : products) {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
+    }
+    private void evaluateString(){
+
+
+    }
+    @FXML
+    private void goToSupport(){
+        supportView.toFront();
+    }
+    @FXML
+    private void stackPaneBack(){
+
+        mainViewStackPane.getChildren().get(3).toBack();
+
     }
 }
 
