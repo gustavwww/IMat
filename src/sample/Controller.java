@@ -2,31 +2,26 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebHistory;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
-    @FXML FlowPane productFlowPane;
+    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView,earlierShoppingCarts,supportView,shopView;
+    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView;
     @FXML ImageView productImg;
     @FXML Label detailProductLabel,detailPrice;
     @FXML TextArea detailContent,detailFacts;
+
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
@@ -37,8 +32,10 @@ public class Controller implements Initializable {
             ProductCardController productCardController = new ProductCardController(product, this);
             productCardControllerMap.put(product.getName(), productCardController);
         }
-
         updateProductList();
+
+        EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
+        earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
     }
 
     private void updateProductList() {
@@ -49,19 +46,23 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+
     private void evaluateString(){
 
 
     }
+
     @FXML
-    private void goToSupport(){
-        supportView.toFront();
-    }
+    private void goToSupport(){ supportView.toFront();}
+
+    @FXML
+    private void goToHowTo(){ howToView.toFront();}
 
     @FXML
     private void goEarlierShoppingCarts(){
-        earlierShoppingCarts.toFront();
+        earlierShoppingCartsView.toFront();
     }
+
     void populateDetailView(Product product){
 
         productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
