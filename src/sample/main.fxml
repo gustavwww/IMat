@@ -56,17 +56,17 @@
                                        <content>
                                           <Accordion>
                                             <panes>
-                                              <TitledPane collapsible="false" expanded="false" text="Grönsaker">
+                                              <TitledPane fx:id="vegetables" collapsible="false" expanded="false" text="Grönsaker">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
                                                 </TitledPane>
-                                                <TitledPane collapsible="false" expanded="false" text="Bär">
+                                                <TitledPane fx:id="berries" collapsible="false" expanded="false" text="Bär">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
                                                 </TitledPane>
-                                              <TitledPane collapsible="false" expanded="false" text="Frukt">
+                                              <TitledPane fx:id="fruits" collapsible="false" expanded="false" text="Frukt">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
@@ -75,22 +75,22 @@
                                           </Accordion>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Bröd &amp; Bageri">
+                                    <TitledPane fx:id="bread" prefHeight="200.0" prefWidth="200.0" text="Bröd &amp; Bageri">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Kött">
+                                    <TitledPane fx:id="meat" prefHeight="200.0" prefWidth="200.0" text="Kött">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Dryck">
+                                    <TitledPane fx:id="drinks" prefHeight="200.0" prefWidth="200.0" text="Dryck">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Mejeri &amp; Ost">
+                                    <TitledPane fx:id="dairies" prefHeight="200.0" prefWidth="200.0" text="Mejeri &amp; Ost">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -100,22 +100,22 @@
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Fisk &amp; Skaldjur">
+                                    <TitledPane fx:id="seafood" prefHeight="200.0" prefWidth="200.0" text="Fisk &amp; Skaldjur">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="0.0" prefWidth="206.0" text="Smaksättare">
+                                    <TitledPane fx:id="herbs" prefHeight="0.0" prefWidth="206.0" text="Smaksättare">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Nötter &amp; Fröer">
+                                    <TitledPane fx:id="nuts" prefHeight="200.0" prefWidth="200.0" text="Nötter &amp; Fröer">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
                                     </TitledPane>
-                                    <TitledPane prefHeight="200.0" prefWidth="200.0" text="Godis">
+                                    <TitledPane fx:id="candy" prefHeight="200.0" prefWidth="200.0" text="Godis">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

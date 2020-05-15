@@ -53,6 +53,9 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    private void goToShopView(){ shopView.toFront();}
+
+    @FXML
     private void goToSupport(){ supportView.toFront();}
 
     @FXML
@@ -62,7 +65,6 @@ public class Controller implements Initializable {
     private void goEarlierShoppingCarts(){
         earlierShoppingCartsView.toFront();
     }
-
     void populateDetailView(Product product){
 
         productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
@@ -77,10 +79,6 @@ public class Controller implements Initializable {
 
 
 
-    }
-    @FXML
-    private void goToShopView(){
-        shopView.toFront();
     }
     @FXML
     private void stackPaneBack(){
