@@ -1,15 +1,17 @@
 package sample;
 
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
+import se.chalmers.cse.dat216.project.ProductCategory;
 
 import java.net.URL;
 import java.util.*;
@@ -19,9 +21,10 @@ public class Controller implements Initializable {
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView;
     @FXML ImageView productImg;
-    @FXML Label detailProductLabel,detailPrice;
+    @FXML Label detailProductLabel,detailPrice,categoryLabel;
     @FXML TextArea detailContent,detailFacts;
-
+    @FXML Button supportBack1;
+    @FXML Accordion catecoryAccordion;
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
@@ -36,20 +39,62 @@ public class Controller implements Initializable {
 
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
         earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
+
+
+
+        catecoryAccordion.expandedPaneProperty().addListener(
+                (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
+                 TitledPane new_val) -> {
+                    if (new_val != null) {
+                    sortedProductList(catecoryAccordion.getExpandedPane().getText());
+                    }
+                });
+
+
     }
 
     private void updateProductList() {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts();
-
         for (Product product : products) {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+    @FXML
+    private void sortedProductList(String search){
+        productFlowPane.getChildren().clear();
+        productFlowPane.getChildren().add(categoryLabel);
+        productFlowPane.getChildren().add(supportBack1);
+        productCardControllerMap.clear();
+        for (Product product : iMatDataHandler.getProducts(getCategory(search))) {
+            ProductCardController productCardController = new ProductCardController(product, this);
+            productCardControllerMap.put(product.getName(), productCardController);
+        }
+        updateProductSearchList(search);
+        categoryLabel.setText(search);
+        shopView.toFront();
+    }
+    private ProductCategory getCategory(String category){
+        ProductCategory productCategory;
+        switch (category){
+            case "Bär": productCategory = ProductCategory.BERRY;
+            break;
+            case "Grönsaker": productCategory = ProductCategory.ROOT_VEGETABLE;
+            break;
+            case "Frukt": productCategory = ProductCategory.FRUIT;
+            break;
+            default: productCategory = ProductCategory.BREAD;
+            break;
+        }
+        return productCategory;
+    }
+    private void updateProductSearchList(String search) {
+        //productFlowPane.getChildren().clear();
+        List<Product> products = iMatDataHandler.getProducts(getCategory(search));
 
-    private void evaluateString(){
-
-
+        for (Product product : products) {
+            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+        }
     }
 
     @FXML
@@ -83,7 +128,7 @@ public class Controller implements Initializable {
     @FXML
     private void stackPaneBack(){
 
-        mainViewStackPane.getChildren().get(3).toBack();
+        mainViewStackPane.getChildren().get(4).toBack(); //
 
     }
 }
