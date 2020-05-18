@@ -24,13 +24,16 @@ public class Controller implements Initializable {
     @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
+    @FXML TextField searchBar;
     @FXML TextArea detailContent,detailFacts;
-    @FXML Button supportBack1,shoppingCartButton;
+    @FXML Button supportBack1,shoppingCartButton,detailAdd;
     @FXML Accordion categoryAccordion;
+    @FXML Spinner detailSpinner;
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
-
+    private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,0,1);
+    private Product selectedProduct;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         iMatDataHandler.getShoppingCart().addProduct(iMatDataHandler.getProduct(33),3);
@@ -53,10 +56,21 @@ public class Controller implements Initializable {
                     sortedProductList(categoryAccordion.getExpandedPane().getText());
                     }
                 });
+        detailSpinner.setValueFactory(spinnerValueFactory);
+    }
+    @FXML
+    private void search(){
+        productFlowPane.getChildren().clear();
+        productFlowPane.getChildren().add(categoryLabel);
 
+        productFlowPane.getChildren().add(supportBack1);
+        shopView.toFront();
+        for(Product product: iMatDataHandler.findProducts(searchBar.getText())){
+            productFlowPane.getChildren().add(new ProductCardController(product,this));
+        }
+        categoryLabel.setText("sökning efter: "+searchBar.getText()+" ("+(productFlowPane.getChildren().size()-2)+" träffar)");
 
     }
-
     private void updateProductList() {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts();
@@ -108,6 +122,20 @@ public class Controller implements Initializable {
             products = products+1;
         }
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
+    }@FXML
+    private void detailAddProduct(){
+        if(selectedProduct.getUnitSuffix().equals("st")||selectedProduct.getUnitSuffix().equals("förp")){
+            if(Double.parseDouble(detailSpinner.getEditor().getText()) % 0 == 0){
+                addProduct(Double.parseDouble(detailSpinner.getEditor().getText()),selectedProduct);
+
+            }
+            return;
+        }
+        if(Double.parseDouble(detailSpinner.getEditor().getText()) >0) {
+
+            addProduct(Double.valueOf(detailSpinner.getEditor().getText()), selectedProduct);
+
+        }
     }
     void addProduct(double amount,Product product){
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
@@ -190,7 +218,7 @@ public class Controller implements Initializable {
         earlierShoppingCartsView.toFront();
     }
     void populateDetailView(Product product){
-
+        selectedProduct = product;
         productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
         detailFacts.setText("ICA Pommes frites Fryst är klassiskt räfflade frittar gjorda av fin potatis. Riktigt" +
                 " bra pommes frites ska ju enligt vissa experter gärna tillagas 3 gånger och helst" +

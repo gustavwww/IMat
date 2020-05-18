@@ -43,15 +43,22 @@ public class ProductCardController extends AnchorPane {
         productPrice.setText(product.getPrice() + " " + product.getUnit());
         productImage.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
 
-        initSpinner();
-    }
-
-    private void initSpinner() {
         productCardSpinner.setValueFactory(spinnerValueFactory);
     }
+
+
     @FXML private void addProduct(){
-        if(Double.valueOf(productCardSpinner.getEditor().getText()) >0) {
+        if(product.getUnitSuffix().equals("st")||product.getUnitSuffix().equals("förp")){
+            if(Double.parseDouble(productCardSpinner.getEditor().getText()) % 0 == 0){
+                parentController.addProduct(Double.parseDouble(productCardSpinner.getEditor().getText()),product);
+
+            }
+            return;
+        }
+        if(Double.parseDouble(productCardSpinner.getEditor().getText()) >0) {
+
             parentController.addProduct(Double.valueOf(productCardSpinner.getEditor().getText()), product);
+
         }
     }
     @FXML
