@@ -20,7 +20,7 @@ public class ProductCardController extends AnchorPane {
     @FXML
     private
     Spinner productCardSpinner;
-    private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,0,1);
+    private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,1,1);
     private Controller parentController;
     private Product product;
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();

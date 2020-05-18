@@ -32,7 +32,7 @@ public class Controller implements Initializable {
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
-    private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,0,1);
+    private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,1,1);
     private Product selectedProduct;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -132,11 +132,12 @@ public class Controller implements Initializable {
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
             products = products+1;
         }
+        cartPriceTotal.setText("Totalpris: "+(iMatDataHandler.getShoppingCart().getTotal()+49)+" kr"); //+49 i och med frakt
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
     }@FXML
     private void detailAddProduct(){
         if(selectedProduct.getUnitSuffix().equals("st")||selectedProduct.getUnitSuffix().equals("förp")){
-            if(Double.parseDouble(detailSpinner.getEditor().getText()) % 0 == 0){
+            if(Double.parseDouble(detailSpinner.getEditor().getText()) % 1 == 0){
                 addProduct(Double.parseDouble(detailSpinner.getEditor().getText()),selectedProduct);
 
             }
