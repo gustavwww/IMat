@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -108,6 +109,10 @@ public class Controller implements Initializable {
         }
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
 
+    }
+    @FXML
+    public void mouseTrap(Event event){
+        event.consume();
     }
     @FXML
     private void closeShoppingCart(){
