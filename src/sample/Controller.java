@@ -21,7 +21,7 @@ import java.util.*;
 public class Controller implements Initializable {
     @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane;
+    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
     @FXML TextField searchBar;
@@ -57,6 +57,17 @@ public class Controller implements Initializable {
                     }
                 });
         detailSpinner.setValueFactory(spinnerValueFactory);
+    }
+    @FXML private void emptyConfirmBoxToFront(){
+        confirmBox.toFront();
+    }
+    @FXML private void confirmBoxToBack(){
+        confirmBox.toBack();
+    }
+    @FXML private void emptyCart(){
+        iMatDataHandler.getShoppingCart().clear();
+        populateShoppingCart();
+        confirmBox.toBack();
     }
     @FXML
     private void search(){
