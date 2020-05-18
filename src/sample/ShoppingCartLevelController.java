@@ -18,9 +18,11 @@ public class ShoppingCartLevelController extends AnchorPane {
     @FXML
     Label levelName,levelUnitPrice,levelProductNumber,levelTotalPrice;
     IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
+    Product product;
+    private Controller parentController;
     public ShoppingCartLevelController(Product product, Controller controller,double amount) {
-
-
+        this.product = product;
+        parentController = controller;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("shoppingCartLevel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -39,7 +41,14 @@ public class ShoppingCartLevelController extends AnchorPane {
         else {
             levelProductNumber.setText(amount+" "+product.getUnitSuffix());
         }
-
+        levelName.setText(product.getName());
         shoppingCartImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
+    }
+    @FXML private void addProduct(){
+        parentController.addProduct(1,product);
+    }
+    @FXML private void removeProduct(){
+        parentController.removeProduct(1,product);
+
     }
 }

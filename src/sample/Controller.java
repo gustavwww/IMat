@@ -25,7 +25,7 @@ public class Controller implements Initializable {
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
     @FXML TextArea detailContent,detailFacts;
-    @FXML Button supportBack1;
+    @FXML Button supportBack1,shoppingCartButton;
     @FXML Accordion categoryAccordion;
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -108,10 +108,43 @@ public class Controller implements Initializable {
             products = products+1;
         }
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
-
+    }
+    void addProduct(double amount,Product product){
+       for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
+           if(shoppingItem.getProduct().equals(product)){
+               shoppingItem.setAmount(shoppingItem.getAmount()+amount);
+               updateCartButton();
+               populateShoppingCart();
+               return;
+           }
+       }
+       iMatDataHandler.getShoppingCart().addProduct(product,amount);
+       updateCartButton();
+       populateShoppingCart();
+    }
+    void removeProduct(double amount, Product product){
+        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
+            if(shoppingItem.getProduct().equals(product)){
+                shoppingItem.setAmount(shoppingItem.getAmount()-amount);
+                if(shoppingItem.getAmount()<= 0){
+                    iMatDataHandler.getShoppingCart().getItems().remove(shoppingItem);
+                    populateShoppingCart();
+                    updateCartButton();
+                    return;
+                }
+            }
+        }
+       updateCartButton();
+        populateShoppingCart();
+    }
+    private void updateCartButton(){
+        shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" olika varor "+iMatDataHandler.getShoppingCart().getTotal()+" kr");
+        if(iMatDataHandler.getShoppingCart().getItems().size() == 1){
+            shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" vara "+iMatDataHandler.getShoppingCart().getTotal()+" kr");
+        }
     }
     @FXML
-    public void mouseTrap(Event event){
+    private void mouseTrap(Event event){
         event.consume();
     }
     @FXML
