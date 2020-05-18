@@ -136,6 +136,7 @@ public class Controller implements Initializable {
             addProduct(Double.valueOf(detailSpinner.getEditor().getText()), selectedProduct);
 
         }
+
     }
     void addProduct(double amount,Product product){
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
