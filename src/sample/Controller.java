@@ -1,10 +1,10 @@
 package sample;
 
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -12,28 +12,31 @@ import javafx.scene.layout.StackPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
+import se.chalmers.cse.dat216.project.ShoppingItem;
 
 import java.net.URL;
 import java.util.*;
 
 public class Controller implements Initializable {
-    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane;
+    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView;
-    @FXML ImageView productImg;
-    @FXML Label detailProductLabel,detailPrice,categoryLabel;
+    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane;
+    @FXML ImageView productImg,shoppingCartCloseImg;
+    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
     @FXML TextArea detailContent,detailFacts;
     @FXML Button supportBack1;
-    @FXML Accordion catecoryAccordion;
+    @FXML Accordion categoryAccordion;
+    private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        iMatDataHandler.getShoppingCart().addProduct(iMatDataHandler.getProduct(33),3);
         for (Product product : iMatDataHandler.getProducts()) {
             ProductCardController productCardController = new ProductCardController(product, this);
             productCardControllerMap.put(product.getName(), productCardController);
+            productList.add(productCardController);
         }
         updateProductList();
 
@@ -42,11 +45,11 @@ public class Controller implements Initializable {
 
 
 
-        catecoryAccordion.expandedPaneProperty().addListener(
+        categoryAccordion.expandedPaneProperty().addListener(
                 (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
                  TitledPane new_val) -> {
                     if (new_val != null) {
-                    sortedProductList(catecoryAccordion.getExpandedPane().getText());
+                    sortedProductList(categoryAccordion.getExpandedPane().getText());
                     }
                 });
 
@@ -96,7 +99,45 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+    private void populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
+        cartFlowPane.getChildren().clear();
+        int products = 0;
+        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
+            cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
+            products = products+1;
+        }
+        cartNumberOffProducts.setText("Totalt "+products+" olika varor");
 
+    }
+    @FXML
+    private void closeShoppingCart(){
+        shoppingCartPane.toBack();
+    }
+    @FXML private void ShoppingCartHoverEnter(){
+        shoppingCartCloseImg.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "sample/resources/icon_close_hover.png")));
+    }
+    @FXML private void ShoppingCartHoverLeave(){
+        shoppingCartCloseImg.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
+                "sample/resources/icon_close.png")));
+    }
+    @FXML
+    private void goToPopularView(){
+        productFlowPane.getChildren().clear();
+        productFlowPane.getChildren().add(categoryLabel);
+        productFlowPane.getChildren().add(supportBack1);
+        categoryLabel.setText("Populärt");
+        for (ProductCardController productCardController : productList) {
+            productFlowPane.getChildren().add(productCardController);
+        }
+        goToShopView();
+    }
+    @FXML
+    private void goToShoppingCart(){
+        populateShoppingCart();
+        shoppingCartPane.toFront();
+
+    }
     @FXML
     private void goToShopView(){ shopView.toFront();}
 
@@ -121,9 +162,6 @@ public class Controller implements Initializable {
         detailContent.setText("Energi (kcal) 150 kcal, Energi (kJ) 600 kJ, Fett 4.40 g, Varav mättat fett 0.50 g, Kolhydrater 23 g, Varav socker 0.50 g, Fiber 3 g, Protein 2.20 g, Salt 0.10 g");
         detailProductLabel.setText(product.getName());
         detailPrice.setText(product.getPrice() + " " + product.getUnit());
-
-
-
     }
     @FXML
     private void stackPaneBack(){

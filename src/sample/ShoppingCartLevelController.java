@@ -1,0 +1,45 @@
+package sample;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import se.chalmers.cse.dat216.project.IMatDataHandler;
+import se.chalmers.cse.dat216.project.Product;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.List;
+
+public class ShoppingCartLevelController extends AnchorPane {
+    @FXML
+    ImageView shoppingCartImg;
+    @FXML
+    Label levelName,levelUnitPrice,levelProductNumber,levelTotalPrice;
+    IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
+    public ShoppingCartLevelController(Product product, Controller controller,double amount) {
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("shoppingCartLevel.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+        levelUnitPrice.setText(product.getPrice() + " " + product.getUnit());
+        levelTotalPrice.setText(product.getPrice()*amount+" kr");
+        if(product.getUnitSuffix().equals("st")||product.getUnitSuffix().equals("förp")  ){ //för att vi inte ska få 2.0 st cola burkar, vi skall få 2 st
+            DecimalFormat df = new DecimalFormat("###");
+            levelProductNumber.setText(df.format(amount)+" "+product.getUnitSuffix());
+        }
+        else {
+            levelProductNumber.setText(amount+" "+product.getUnitSuffix());
+        }
+
+        shoppingCartImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
+    }
+}

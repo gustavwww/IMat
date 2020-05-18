@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<fx:root prefHeight="75.0" prefWidth="1060.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="shoppingCartImg" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/icon_time.png" />
+         </image></ImageView>
+      <ImageView fx:id="levelAdd" fitHeight="30.0" fitWidth="30.0" layoutX="849.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" rotate="45.0" AnchorPane.topAnchor="23.0">
+         <image>
+            <Image url="@resources/icon_close.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="levelName" layoutX="90.0" layoutY="20.0" prefHeight="35.0" prefWidth="243.0" text="Label">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="levelUnitPrice" layoutX="250.0" layoutY="20.0" prefHeight="35.0" prefWidth="243.0" text="19.50 kr/st">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Line fx:id="levelRemove" endX="100.0" layoutX="648.0" layoutY="38.0" startX="52.0" strokeWidth="4.0" />
+      <Label fx:id="levelProductNumber" layoutX="780.0" layoutY="25.0" text="1 st">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="levelTotalPrice" layoutX="908.0" layoutY="27.0" prefHeight="27.0" prefWidth="94.0" text="19.50">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</fx:root>
