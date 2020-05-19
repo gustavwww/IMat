@@ -36,6 +36,7 @@ public class Controller implements Initializable {
     private Product selectedProduct;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         iMatDataHandler.getShoppingCart().addProduct(iMatDataHandler.getProduct(33),3);
         for (Product product : iMatDataHandler.getProducts()) {
             ProductCardController productCardController = new ProductCardController(product, this);
@@ -43,7 +44,7 @@ public class Controller implements Initializable {
             productList.add(productCardController);
         }
         updateProductList();
-
+        updateCartButton();
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
         earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
 
@@ -68,13 +69,14 @@ public class Controller implements Initializable {
         iMatDataHandler.getShoppingCart().clear();
         populateShoppingCart();
         confirmBox.toBack();
+        updateCartButton();
     }
     @FXML
     private void search(){
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
 
-        productFlowPane.getChildren().add(supportBack1);
+        //productFlowPane.getChildren().add(supportBack1);
         shopView.toFront();
         for(Product product: iMatDataHandler.findProducts(searchBar.getText())){
             productFlowPane.getChildren().add(new ProductCardController(product,this));
@@ -93,7 +95,7 @@ public class Controller implements Initializable {
     private void sortedProductList(String search){
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
-        productFlowPane.getChildren().add(supportBack1);
+        //productFlowPane.getChildren().add(supportBack1);
         productCardControllerMap.clear();
         for (Product product : iMatDataHandler.getProducts(getCategory(search))) {
             ProductCardController productCardController = new ProductCardController(product, this);
@@ -204,7 +206,7 @@ public class Controller implements Initializable {
     private void goToPopularView(){
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
-        productFlowPane.getChildren().add(supportBack1);
+        //productFlowPane.getChildren().add(supportBack1);
         categoryLabel.setText("Populärt");
         for (ProductCardController productCardController : productList) {
             productFlowPane.getChildren().add(productCardController);
@@ -244,8 +246,8 @@ public class Controller implements Initializable {
     }
     @FXML
     private void stackPaneBack(){
-
-        mainViewStackPane.getChildren().get(4).toBack(); //
+        shopView.toFront();
+       // mainViewStackPane.getChildren().get(4).toBack(); //
 
     }
 }

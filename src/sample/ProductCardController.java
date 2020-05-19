@@ -52,7 +52,6 @@ public class ProductCardController extends AnchorPane {
         if(product.getUnitSuffix().equals("st")||product.getUnitSuffix().equals("förp")){
             if(Double.parseDouble(productCardSpinner.getEditor().getText()) % 1 == 0){
                 parentController.addProduct(Double.parseDouble(productCardSpinner.getEditor().getText()),product);
-                System.out.println("hej");
             }
 
             return;
