@@ -520,148 +520,6 @@
                               </SplitPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="wizardThird" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
-                           <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="493.0" prefWidth="1280.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <AnchorPane prefHeight="843.0" prefWidth="1280.0" style="-fx-background-color: WHITE;">
-                                       <children>
-                                          <ImageView fitHeight="266.0" fitWidth="810.0" layoutX="207.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="5.0">
-                                             <image>
-                                                <Image url="@resources/Third-Wizard-PNG.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ScrollPane hbarPolicy="NEVER" layoutX="291.0" layoutY="168.0" prefHeight="184.0" prefWidth="1080.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
-                                             <content>
-                                                <FlowPane fx:id="finishFlowPane" prefHeight="186.0" prefWidth="1077.0" />
-                                             </content>
-                                          </ScrollPane>
-                                          <Label layoutX="100.0" layoutY="352.0" prefHeight="25.0" prefWidth="58.0" text="Varor" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="350.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="110.0" layoutY="362.0" prefHeight="25.0" prefWidth="58.0" text="Frakt" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="375.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="110.0" layoutY="362.0" prefHeight="27.0" prefWidth="113.0" text="397.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="350.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="113.0" text="49.0 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="375.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="113.0" text="446.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="400.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="264.0" text="Totalt (8 varor)" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="400.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="264.0" text="Hemleverans" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="440.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="401.0" text="Datum" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="465.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="264.0" text="Leveransuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="520.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Förnamn Efternamn" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="545.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Address" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="570.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Email" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="595.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="076-786-79-75" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="620.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="264.0" text="Betalningsuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="660.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="404.0" text="Kortnummer: 1234-1234-1234-1234" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="685.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="404.0" text="Kortinnehavare: Daltare Daltson" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="710.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="404.0" text="Utgångsdatum: 07-2022" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="735.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="150.0" layoutY="402.0" prefHeight="27.0" prefWidth="404.0" text="CVC: 123" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="760.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="changeDelliveryDateButton" layoutX="1128.0" layoutY="453.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                          <Button fx:id="changeDeliveryButton" layoutX="1138.0" layoutY="463.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                          <Button fx:id="changePaymentButton" layoutX="1148.0" layoutY="473.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="660.0">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Button>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <Button layoutX="576.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" prefHeight="51.0" prefWidth="129.0" text="Startsida" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Slutför och betala" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#goToWizardSecond" text="Tillbaka" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font size="24.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </AnchorPane>
                         <AnchorPane fx:id="wizardSecond" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
                            <children>
                               <ImageView fitHeight="266.0" fitWidth="810.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="5.0">
@@ -827,6 +685,148 @@
                                  </font>
                               </Button>
                               <Button layoutX="1025.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToWizardSecond" text="Nästa" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="wizardThird" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+                           <children>
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="493.0" prefWidth="1280.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <AnchorPane prefHeight="843.0" prefWidth="1280.0" style="-fx-background-color: WHITE;">
+                                       <children>
+                                          <ImageView fitHeight="266.0" fitWidth="810.0" layoutX="207.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="5.0">
+                                             <image>
+                                                <Image url="@resources/Third-Wizard-PNG.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ScrollPane hbarPolicy="NEVER" layoutX="291.0" layoutY="168.0" prefHeight="184.0" prefWidth="1080.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                             <content>
+                                                <FlowPane fx:id="finishFlowPane" prefHeight="186.0" prefWidth="1077.0" />
+                                             </content>
+                                          </ScrollPane>
+                                          <Label layoutX="100.0" layoutY="352.0" prefHeight="25.0" prefWidth="58.0" text="Varor" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="350.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="110.0" layoutY="362.0" prefHeight="25.0" prefWidth="58.0" text="Frakt" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="375.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="finishTotal" alignment="CENTER_RIGHT" layoutX="110.0" layoutY="362.0" prefHeight="27.0" prefWidth="113.0" text="397.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="350.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="113.0" text="49.0 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="375.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="finishTotalWithShipping" alignment="CENTER_RIGHT" layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="113.0" text="446.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="400.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="finishNWares" layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="264.0" text="Totalt (8 varor)" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="400.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="264.0" text="Hemleverans" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="440.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="401.0" text="Datum" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="465.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="264.0" text="Leveransuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="520.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Förnamn Efternamn" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="545.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Address" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="570.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="Email" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="595.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="401.0" text="076-786-79-75" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="620.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="264.0" text="Betalningsuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="660.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="120.0" layoutY="372.0" prefHeight="27.0" prefWidth="404.0" text="Kortnummer: 1234-1234-1234-1234" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="685.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="130.0" layoutY="382.0" prefHeight="27.0" prefWidth="404.0" text="Kortinnehavare: Daltare Daltson" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="710.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="140.0" layoutY="392.0" prefHeight="27.0" prefWidth="404.0" text="Utgångsdatum: 07-2022" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="735.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="150.0" layoutY="402.0" prefHeight="27.0" prefWidth="404.0" text="CVC: 123" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="760.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="changeDelliveryDateButton" layoutX="1128.0" layoutY="453.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="changeDeliveryButton" layoutX="1138.0" layoutY="463.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <Button fx:id="changePaymentButton" layoutX="1148.0" layoutY="473.0" mnemonicParsing="false" text="Ändra" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="660.0">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <Button layoutX="576.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" prefHeight="51.0" prefWidth="129.0" text="Startsida" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Slutför och betala" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#goToWizardSecond" text="Tillbaka" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
