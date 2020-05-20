@@ -31,6 +31,8 @@ public class Controller implements Initializable {
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
     @FXML Accordion categoryAccordion;
     @FXML Spinner detailSpinner;
+    @FXML TreeView treeView;
+
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
@@ -50,9 +52,9 @@ public class Controller implements Initializable {
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
         earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
 
+        fillTreeView();
 
-
-        categoryAccordion.expandedPaneProperty().addListener(
+      /*  categoryAccordion.expandedPaneProperty().addListener(
                 (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
                  TitledPane new_val) -> {
                     if (new_val != null) {
@@ -60,7 +62,29 @@ public class Controller implements Initializable {
                     }
                 });
         detailSpinner.setValueFactory(spinnerValueFactory);
+       */
+
+
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedCategory((TreeItem) newValue));
+
+
     }
+
+    private void fillTreeView() {
+        TreeItem rootItem = new TreeItem("Kategorier");
+        rootItem.getChildren().add(new TreeItem("Så här handlar du"));
+        rootItem.getChildren().add(new TreeItem("Populärt"));
+
+        TreeItem fruitsGreens = new TreeItem("Frukt & Grönt");
+        fruitsGreens.getChildren().add(new TreeItem("Frukter"));
+        fruitsGreens.getChildren().add(new TreeItem("Grönsaker"));
+        fruitsGreens.getChildren().add(new TreeItem("Bär"));
+        rootItem.getChildren().add(fruitsGreens);
+
+        treeView.setRoot(rootItem);
+        treeView.setShowRoot(false);
+    }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -80,6 +104,7 @@ public class Controller implements Initializable {
         confirmBox.toBack();
         updateCartButton();
     }
+
     @FXML
     private void search(){
         productFlowPane.getChildren().clear();
@@ -93,6 +118,7 @@ public class Controller implements Initializable {
         categoryLabel.setText("sökning efter: "+searchBar.getText()+" ("+(productFlowPane.getChildren().size()-2)+" träffar)");
 
     }
+
     private void updateProductList() {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts();
@@ -100,6 +126,7 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+
     @FXML
     private void sortedProductList(String search){
         productFlowPane.getChildren().clear();
@@ -114,6 +141,18 @@ public class Controller implements Initializable {
         categoryLabel.setText(search);
         shopView.toFront();
     }
+
+    private void sortedCategory(TreeItem item) {
+        productFlowPane.getChildren().clear();
+        categoryLabel.setText(item.getValue().toString());
+        productFlowPane.getChildren().add(categoryLabel);
+        //productFlowPane.getChildren().add(supportBack1);
+        for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
+            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+        }
+        shopView.toFront();
+    }
+
     private ProductCategory getCategory(String category){
         ProductCategory productCategory;
         switch (category){
@@ -121,13 +160,14 @@ public class Controller implements Initializable {
             break;
             case "Grönsaker": productCategory = ProductCategory.ROOT_VEGETABLE;
             break;
-            case "Frukt": productCategory = ProductCategory.FRUIT;
+            case "Frukter": productCategory = ProductCategory.FRUIT;
             break;
             default: productCategory = ProductCategory.BREAD;
             break;
         }
         return productCategory;
     }
+
     private void updateProductSearchList(String search) {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts(getCategory(search));
@@ -136,6 +176,7 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+
     private void populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
         cartFlowPane.getChildren().clear();
         int products = 0;

@@ -11,6 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -146,120 +147,7 @@
                                 <items>
                                   <AnchorPane maxWidth="205.0" minHeight="0.0" minWidth="205.0" prefHeight="722.0" prefWidth="205.0">
                                        <children>
-                                          <Accordion prefHeight="632.0" prefWidth="188.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <panes>
-                                                <TitledPane onMouseClicked="#goToHowTo" prefHeight="200.0" prefWidth="205.0" text="Så här handlar du">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </TitledPane>
-                                                <TitledPane onMouseClicked="#goToPopularView" prefHeight="200.0" prefWidth="200.0" text="Populärt">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </TitledPane>
-                                                <TitledPane prefHeight="159.0" prefWidth="205.0" text="Frukt &amp; Grönt">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                   <content>
-                                                      <Accordion fx:id="categoryAccordion">
-                                                        <panes>
-                                                          <TitledPane fx:id="vegetables" expanded="false" prefHeight="31.0" prefWidth="203.0" text="Grönsaker">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                               <cursor>
-                                                                  <Cursor fx:constant="HAND" />
-                                                               </cursor>
-                                                            </TitledPane>
-                                                            <TitledPane fx:id="berries" expanded="false" text="Bär">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                               <cursor>
-                                                                  <Cursor fx:constant="HAND" />
-                                                               </cursor>
-                                                            </TitledPane>
-                                                          <TitledPane fx:id="fruits" expanded="false" text="Frukt">
-                                                               <font>
-                                                                  <Font size="18.0" />
-                                                               </font>
-                                                               <cursor>
-                                                                  <Cursor fx:constant="HAND" />
-                                                               </cursor>
-                                                            </TitledPane>
-                                                        </panes>
-                                                      </Accordion>
-                                                   </content>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </TitledPane>
-                                                <TitledPane fx:id="bread" prefHeight="200.0" prefWidth="200.0" text="Bröd &amp; Bageri">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="meat" prefHeight="200.0" prefWidth="200.0" text="Kött">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="drinks" prefHeight="200.0" prefWidth="200.0" text="Dryck">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="dairies" prefHeight="200.0" prefWidth="200.0" text="Mejeri &amp; Ost">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane prefHeight="200.0" prefWidth="200.0" text="Skafferi">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="seafood" prefHeight="200.0" prefWidth="200.0" text="Fisk &amp; Skaldjur">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="herbs" prefHeight="0.0" prefWidth="206.0" text="Smaksättare">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="nuts" prefHeight="200.0" prefWidth="200.0" text="Nötter &amp; Fröer">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane fx:id="candy" prefHeight="200.0" prefWidth="200.0" text="Godis">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </TitledPane>
-                                                <TitledPane onMouseClicked="#goToPopularView" prefHeight="200.0" prefWidth="200.0" text="Populärt">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </TitledPane>
-                                             </panes>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Accordion>
+                                          <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <StackPane fx:id="mainViewStackPane" prefHeight="150.0" prefWidth="200.0">
