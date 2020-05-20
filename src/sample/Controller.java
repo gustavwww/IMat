@@ -72,11 +72,31 @@ public class Controller implements Initializable {
         rootItem.getChildren().add(new TreeItem("Så här handlar du"));
         rootItem.getChildren().add(new TreeItem("Populärt"));
 
+
         TreeItem fruitsGreens = new TreeItem("Frukt & Grönt");
         fruitsGreens.getChildren().add(new TreeItem("Frukter"));
         fruitsGreens.getChildren().add(new TreeItem("Grönsaker"));
         fruitsGreens.getChildren().add(new TreeItem("Bär"));
         rootItem.getChildren().add(fruitsGreens);
+
+        TreeItem drinks = new TreeItem("Dryck");
+        drinks.getChildren().add(new TreeItem<>("Varma drycker"));
+        drinks.getChildren().add(new TreeItem<>("Kalla drycker"));
+
+        TreeItem skafferiet = new TreeItem("Skafferi");
+        skafferiet.getChildren().add(new TreeItem<>("Mjöl, socker, salt"));
+        skafferiet.getChildren().add(new TreeItem<>("Pasta"));
+        skafferiet.getChildren().add(new TreeItem<>("Potatis & Ris"));
+
+        rootItem.getChildren().add(new TreeItem("Bröd & Bageri"));
+        rootItem.getChildren().add(new TreeItem("Kött"));
+        rootItem.getChildren().add(new TreeItem("Fisk & Skaldjur"));
+        rootItem.getChildren().add(drinks);
+        rootItem.getChildren().add(new TreeItem("Mejeri & Ost"));
+        rootItem.getChildren().add(skafferiet);
+        rootItem.getChildren().add(new TreeItem("Smaksättare"));
+        rootItem.getChildren().add(new TreeItem("Nötter & Fröer"));
+        rootItem.getChildren().add(new TreeItem("Godis"));
 
         treeView.setRoot(rootItem);
         treeView.setShowRoot(false);
@@ -136,13 +156,18 @@ public class Controller implements Initializable {
         shopView.toFront();
     }
 
-    private void sortedTree(TreeItem item){
+    private void sortedTree(TreeItem item) {
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
         categoryLabel.setText(item.getValue().toString());
-        //productFlowPane.getChildren().add(supportBack1);
-        for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
-            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+        if (getCategory(item.getValue().toString()) != null) {
+            //productFlowPane.getChildren().add(supportBack1);
+            for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
+                productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+            }
+        }
+        else if (item.getValue().toString().equals("Populärt")) {
+            updateProductList();
         }
         shopView.toFront();
     }
@@ -150,17 +175,26 @@ public class Controller implements Initializable {
     private ProductCategory getCategory(String category){
         ProductCategory productCategory;
         switch (category){
-            case "Bär": productCategory = ProductCategory.BERRY;
-            break;
-            case "Grönsaker": productCategory = ProductCategory.ROOT_VEGETABLE;
-            break;
-            case "Frukter": productCategory = ProductCategory.FRUIT;
-            break;
-            default: productCategory = ProductCategory.BREAD;
-            break;
+            case "Bär": productCategory = ProductCategory.BERRY; break;
+            case "Grönsaker": productCategory = ProductCategory.VEGETABLE_FRUIT; break;
+            case "Frukter": productCategory = ProductCategory.FRUIT; break;
+            case "Kött": productCategory = ProductCategory.MEAT; break;
+            case "Fisk & Skaldjur": productCategory = ProductCategory.FISH; break;
+            case "Bröd & Bageri": productCategory = ProductCategory.BREAD; break;
+            case "Varma drycker": productCategory = ProductCategory.HOT_DRINKS; break;
+            case "Kalla drycker": productCategory = ProductCategory.COLD_DRINKS; break;
+            case "Mejeri & Ost": productCategory = ProductCategory.DAIRIES; break;
+            case "Mjöl, socker, salt": productCategory = ProductCategory.FLOUR_SUGAR_SALT; break;
+            case "Pasta": productCategory = ProductCategory.PASTA; break;
+            case "Potatis & Ris": productCategory = ProductCategory.POTATO_RICE; break;
+            case "Smaksättare": productCategory = ProductCategory.HERB; break;
+            case "Nötter & Fröer": productCategory = ProductCategory.NUTS_AND_SEEDS; break;
+            case "Godis": productCategory = ProductCategory.SWEET; break;
+            default: productCategory = null; break;
         }
         return productCategory;
     }
+
     private void updateProductSearchList(String search) {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts(getCategory(search));
@@ -169,6 +203,7 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
+
     private int populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
         cartFlowPane.getChildren().clear();
         finishFlowPane.getChildren().clear();
