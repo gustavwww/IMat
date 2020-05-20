@@ -29,7 +29,7 @@ public class Controller implements Initializable {
     @FXML TextField searchBar;
     @FXML TextArea detailContent,detailFacts;
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
-    @FXML Accordion categoryAccordion;
+    @FXML TreeView treeView;
     @FXML Spinner detailSpinner;
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -51,7 +51,7 @@ public class Controller implements Initializable {
         earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
 
 
-
+/*
         categoryAccordion.expandedPaneProperty().addListener(
                 (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
                  TitledPane new_val) -> {
@@ -60,7 +60,28 @@ public class Controller implements Initializable {
                     }
                 });
         detailSpinner.setValueFactory(spinnerValueFactory);
+ */
+
+        fillTreeView();
+
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
     }
+
+    private void fillTreeView() {
+        TreeItem rootItem = new TreeItem("Kategorier");
+        rootItem.getChildren().add(new TreeItem("Så här handlar du"));
+        rootItem.getChildren().add(new TreeItem("Populärt"));
+
+        TreeItem fruitsGreens = new TreeItem("Frukt & Grönt");
+        fruitsGreens.getChildren().add(new TreeItem("Frukter"));
+        fruitsGreens.getChildren().add(new TreeItem("Grönsaker"));
+        fruitsGreens.getChildren().add(new TreeItem("Bär"));
+        rootItem.getChildren().add(fruitsGreens);
+
+        treeView.setRoot(rootItem);
+        treeView.setShowRoot(false);
+    }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -114,6 +135,18 @@ public class Controller implements Initializable {
         categoryLabel.setText(search);
         shopView.toFront();
     }
+
+    private void sortedTree(TreeItem item){
+        productFlowPane.getChildren().clear();
+        productFlowPane.getChildren().add(categoryLabel);
+        categoryLabel.setText(item.getValue().toString());
+        //productFlowPane.getChildren().add(supportBack1);
+        for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
+            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+        }
+        shopView.toFront();
+    }
+
     private ProductCategory getCategory(String category){
         ProductCategory productCategory;
         switch (category){
@@ -121,7 +154,7 @@ public class Controller implements Initializable {
             break;
             case "Grönsaker": productCategory = ProductCategory.ROOT_VEGETABLE;
             break;
-            case "Frukt": productCategory = ProductCategory.FRUIT;
+            case "Frukter": productCategory = ProductCategory.FRUIT;
             break;
             default: productCategory = ProductCategory.BREAD;
             break;
