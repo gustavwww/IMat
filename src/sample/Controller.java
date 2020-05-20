@@ -21,9 +21,9 @@ import java.net.URL;
 import java.util.*;
 
 public class Controller implements Initializable {
-    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane;
+    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane,finishFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox;
+    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
     @FXML TextField searchBar;
@@ -84,7 +84,7 @@ public class Controller implements Initializable {
     private void search(){
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
-
+        storeView.toFront();
         //productFlowPane.getChildren().add(supportBack1);
         shopView.toFront();
         for(Product product: iMatDataHandler.findProducts(searchBar.getText())){
@@ -138,10 +138,13 @@ public class Controller implements Initializable {
     }
     private void populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
         cartFlowPane.getChildren().clear();
+        finishFlowPane.getChildren().clear();
         int products = 0;
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
+            finishFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
             products = products+1;
+
         }
         cartPriceTotal.setText("Totalpris: "+round(iMatDataHandler.getShoppingCart().getTotal()+49,2)+" kr"); //+49 i och med frakt
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
@@ -246,6 +249,24 @@ public class Controller implements Initializable {
     @FXML
     private void goEarlierShoppingCarts(){
         earlierShoppingCartsView.toFront();
+    }
+    @FXML
+    private void goToWizardFirst(){
+        shoppingCartPane.toBack();
+        confirmBox.toBack();
+        wizardFirst.toFront();
+    }
+    @FXML
+    private void goToWizardSecond(){
+        wizardSecond.toFront();
+    }
+    @FXML
+    private void goToWizardThird(){
+        wizardThird.toFront();
+    }
+    @FXML
+    private void goToStore(){
+        storeView.toFront();
     }
     void populateDetailView(Product product){
         selectedProduct = product;
