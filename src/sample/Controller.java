@@ -15,6 +15,8 @@ import se.chalmers.cse.dat216.project.Product;
 import se.chalmers.cse.dat216.project.ProductCategory;
 import se.chalmers.cse.dat216.project.ShoppingItem;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.*;
 
@@ -58,6 +60,13 @@ public class Controller implements Initializable {
                     }
                 });
         detailSpinner.setValueFactory(spinnerValueFactory);
+    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
     @FXML private void emptyConfirmBoxToFront(){
         confirmBox.toFront();
@@ -134,7 +143,7 @@ public class Controller implements Initializable {
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
             products = products+1;
         }
-        cartPriceTotal.setText("Totalpris: "+(iMatDataHandler.getShoppingCart().getTotal()+49)+" kr"); //+49 i och med frakt
+        cartPriceTotal.setText("Totalpris: "+round(iMatDataHandler.getShoppingCart().getTotal()+49,2)+" kr"); //+49 i och med frakt
         cartNumberOffProducts.setText("Totalt "+products+" olika varor");
     }@FXML
     private void detailAddProduct(){
@@ -181,10 +190,16 @@ public class Controller implements Initializable {
         populateShoppingCart();
     }
     private void updateCartButton(){
-        shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" olika varor "+iMatDataHandler.getShoppingCart().getTotal()+" kr");
         if(iMatDataHandler.getShoppingCart().getItems().size() == 1){
-            shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" vara "+iMatDataHandler.getShoppingCart().getTotal()+" kr");
+            shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" vara "+round(iMatDataHandler.getShoppingCart().getTotal(),2)+" kr");
         }
+        else if(iMatDataHandler.getShoppingCart().getItems().size() == 0){
+            shoppingCartButton.setText("Varukorgen är tom");
+        }
+        else{
+            shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" olika varor "+round(iMatDataHandler.getShoppingCart().getTotal(),2)+" kr");
+        }
+
     }
     @FXML
     private void mouseTrap(Event event){
