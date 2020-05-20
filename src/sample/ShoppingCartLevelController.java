@@ -9,6 +9,8 @@ import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -32,18 +34,21 @@ public class ShoppingCartLevelController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+
         levelUnitPrice.setText(product.getPrice() + " " + product.getUnit());
-        levelTotalPrice.setText(product.getPrice()*amount+" kr");
+        levelTotalPrice.setText(parentController.round(product.getPrice()*amount,2)+" kr");
         if(product.getUnitSuffix().equals("st")||product.getUnitSuffix().equals("förp")  ){ //för att vi inte ska få 2.0 st cola burkar, vi skall få 2 st
-            DecimalFormat df = new DecimalFormat("###");
-            levelProductNumber.setText(df.format(amount)+" "+product.getUnitSuffix());
+
+            levelProductNumber.setText((int) amount+" "+product.getUnitSuffix());
         }
         else {
-            levelProductNumber.setText(amount+" "+product.getUnitSuffix());
+            levelProductNumber.setText(parentController.round(amount,2)+" "+product.getUnitSuffix());
         }
         levelName.setText(product.getName());
         shoppingCartImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
     }
+
     @FXML private void addProduct(){
         parentController.addProduct(1,product);
     }
