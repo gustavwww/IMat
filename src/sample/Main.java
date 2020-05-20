@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    // Här finns main-metoden!
     public static void main(String[] args) {
         launch(args);
     }
