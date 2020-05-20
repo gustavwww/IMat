@@ -21,18 +21,16 @@ import java.net.URL;
 import java.util.*;
 
 public class Controller implements Initializable {
-    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane;
+    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane,finishFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox;
+    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird;
     @FXML ImageView productImg,shoppingCartCloseImg;
-    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal;
+    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping;
     @FXML TextField searchBar;
     @FXML TextArea detailContent,detailFacts;
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
     @FXML Accordion categoryAccordion;
     @FXML Spinner detailSpinner;
-    @FXML TreeView treeView;
-
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
@@ -48,13 +46,13 @@ public class Controller implements Initializable {
             productList.add(productCardController);
         }
         updateProductList();
-        updateCartButton();
+        updateCart();
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
         earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
 
-        fillTreeView();
 
-      /*  categoryAccordion.expandedPaneProperty().addListener(
+
+        categoryAccordion.expandedPaneProperty().addListener(
                 (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
                  TitledPane new_val) -> {
                     if (new_val != null) {
@@ -62,29 +60,7 @@ public class Controller implements Initializable {
                     }
                 });
         detailSpinner.setValueFactory(spinnerValueFactory);
-       */
-
-
-        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedCategory((TreeItem) newValue));
-
-
     }
-
-    private void fillTreeView() {
-        TreeItem rootItem = new TreeItem("Kategorier");
-        rootItem.getChildren().add(new TreeItem("Så här handlar du"));
-        rootItem.getChildren().add(new TreeItem("Populärt"));
-
-        TreeItem fruitsGreens = new TreeItem("Frukt & Grönt");
-        fruitsGreens.getChildren().add(new TreeItem("Frukter"));
-        fruitsGreens.getChildren().add(new TreeItem("Grönsaker"));
-        fruitsGreens.getChildren().add(new TreeItem("Bär"));
-        rootItem.getChildren().add(fruitsGreens);
-
-        treeView.setRoot(rootItem);
-        treeView.setShowRoot(false);
-    }
-
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -100,16 +76,15 @@ public class Controller implements Initializable {
     }
     @FXML private void emptyCart(){
         iMatDataHandler.getShoppingCart().clear();
-        populateShoppingCart();
-        confirmBox.toBack();
-        updateCartButton();
-    }
 
+        confirmBox.toBack();
+        updateCart();
+    }
     @FXML
     private void search(){
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
-
+        storeView.toFront();
         //productFlowPane.getChildren().add(supportBack1);
         shopView.toFront();
         for(Product product: iMatDataHandler.findProducts(searchBar.getText())){
@@ -118,7 +93,6 @@ public class Controller implements Initializable {
         categoryLabel.setText("sökning efter: "+searchBar.getText()+" ("+(productFlowPane.getChildren().size()-2)+" träffar)");
 
     }
-
     private void updateProductList() {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts();
@@ -126,7 +100,6 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
-
     @FXML
     private void sortedProductList(String search){
         productFlowPane.getChildren().clear();
@@ -141,18 +114,6 @@ public class Controller implements Initializable {
         categoryLabel.setText(search);
         shopView.toFront();
     }
-
-    private void sortedCategory(TreeItem item) {
-        productFlowPane.getChildren().clear();
-        categoryLabel.setText(item.getValue().toString());
-        productFlowPane.getChildren().add(categoryLabel);
-        //productFlowPane.getChildren().add(supportBack1);
-        for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
-            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-        }
-        shopView.toFront();
-    }
-
     private ProductCategory getCategory(String category){
         ProductCategory productCategory;
         switch (category){
@@ -160,14 +121,13 @@ public class Controller implements Initializable {
             break;
             case "Grönsaker": productCategory = ProductCategory.ROOT_VEGETABLE;
             break;
-            case "Frukter": productCategory = ProductCategory.FRUIT;
+            case "Frukt": productCategory = ProductCategory.FRUIT;
             break;
             default: productCategory = ProductCategory.BREAD;
             break;
         }
         return productCategory;
     }
-
     private void updateProductSearchList(String search) {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts(getCategory(search));
@@ -176,16 +136,27 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
     }
-
-    private void populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
+    private int populateShoppingCart(){ //lägger in en shoppingCartLevel för varje unik vara
         cartFlowPane.getChildren().clear();
+        finishFlowPane.getChildren().clear();
         int products = 0;
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
-            products = products+1;
+            finishFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
+            if(shoppingItem.getProduct().getUnit().equals("kg")){
+                products = products+1;
+            }
+           else {
+               products = products + (int) shoppingItem.getAmount();
+            }
+
         }
         cartPriceTotal.setText("Totalpris: "+round(iMatDataHandler.getShoppingCart().getTotal()+49,2)+" kr"); //+49 i och med frakt
-        cartNumberOffProducts.setText("Totalt "+products+" olika varor");
+        cartNumberOffProducts.setText("Totalt "+products+" varor");
+        finishNWares.setText("Totalt "+products+" varor");
+        finishTotalWithShipping.setText(""+round(iMatDataHandler.getShoppingCart().getTotal()+49,2));
+        finishTotal.setText(""+round(iMatDataHandler.getShoppingCart().getTotal(),2));
+        return products;
     }@FXML
     private void detailAddProduct(){
         if(selectedProduct.getUnitSuffix().equals("st")||selectedProduct.getUnitSuffix().equals("förp")){
@@ -206,14 +177,13 @@ public class Controller implements Initializable {
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
            if(shoppingItem.getProduct().equals(product)){
                shoppingItem.setAmount(shoppingItem.getAmount()+amount);
-               updateCartButton();
-               populateShoppingCart();
+               updateCart();
+
                return;
            }
        }
        iMatDataHandler.getShoppingCart().addProduct(product,amount);
-       updateCartButton();
-       populateShoppingCart();
+       updateCart();
     }
     void removeProduct(double amount, Product product){
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
@@ -221,20 +191,20 @@ public class Controller implements Initializable {
                 shoppingItem.setAmount(shoppingItem.getAmount()-amount);
                 if(shoppingItem.getAmount()<= 0){
                     iMatDataHandler.getShoppingCart().getItems().remove(shoppingItem);
-                    populateShoppingCart();
-                    updateCartButton();
+                    updateCart();
                     return;
                 }
             }
         }
-       updateCartButton();
-        populateShoppingCart();
+       updateCart();
+
     }
-    private void updateCartButton(){
-        if(iMatDataHandler.getShoppingCart().getItems().size() == 1){
+    private void updateCart(){
+        int items = populateShoppingCart();
+        if(items == 1){
             shoppingCartButton.setText("Varukorg "+iMatDataHandler.getShoppingCart().getItems().size()+" vara "+round(iMatDataHandler.getShoppingCart().getTotal(),2)+" kr");
         }
-        else if(iMatDataHandler.getShoppingCart().getItems().size() == 0){
+        else if(items == 0){
             shoppingCartButton.setText("Varukorgen är tom");
         }
         else{
@@ -271,7 +241,7 @@ public class Controller implements Initializable {
     }
     @FXML
     private void goToShoppingCart(){
-        populateShoppingCart();
+        updateCart();
         shoppingCartPane.toFront();
 
     }
@@ -287,6 +257,24 @@ public class Controller implements Initializable {
     @FXML
     private void goEarlierShoppingCarts(){
         earlierShoppingCartsView.toFront();
+    }
+    @FXML
+    private void goToWizardFirst(){
+        shoppingCartPane.toBack();
+        confirmBox.toBack();
+        wizardFirst.toFront();
+    }
+    @FXML
+    private void goToWizardSecond(){
+        wizardSecond.toFront();
+    }
+    @FXML
+    private void goToWizardThird(){
+        wizardThird.toFront();
+    }
+    @FXML
+    private void goToStore(){
+        storeView.toFront();
     }
     void populateDetailView(Product product){
         selectedProduct = product;
