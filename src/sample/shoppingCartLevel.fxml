@@ -8,13 +8,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root prefHeight="75.0" prefWidth="1060.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="75.0" prefWidth="1060.0" style="-fx-border-color: #ECEBEB;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="shoppingCartImg" fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="shoppingCartImg" fitHeight="75.0" fitWidth="72.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/icon_time.png" />
          </image></ImageView>
-      <ImageView fx:id="levelAdd" fitHeight="30.0" fitWidth="30.0" layoutX="849.0" layoutY="5.0" onMouseClicked="#addProduct" pickOnBounds="true" preserveRatio="true" rotate="45.0" AnchorPane.topAnchor="23.0">
+      <ImageView fx:id="levelAdd" fitHeight="15.0" fitWidth="15.0" layoutX="831.0" layoutY="28.0" onMouseClicked="#addProduct" pickOnBounds="true" preserveRatio="true" rotate="45.0" AnchorPane.topAnchor="28.0">
          <image>
             <Image url="@resources/icon_close.png" />
          </image>
@@ -32,17 +32,17 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Line fx:id="levelRemove" endX="100.0" layoutX="648.0" layoutY="38.0" onMouseClicked="#removeProduct" startX="52.0" strokeWidth="4.0">
+      <Line fx:id="levelRemove" endX="73.5999755859375" endY="-7.62939453125E-6" layoutX="676.0" layoutY="37.0" onMouseClicked="#removeProduct" startX="52.0" strokeWidth="4.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Line>
-      <Label fx:id="levelProductNumber" layoutX="780.0" layoutY="25.0" text="1 st">
+      <Label fx:id="levelProductNumber" alignment="CENTER" layoutX="768.0" layoutY="22.0" prefHeight="27.0" prefWidth="50.0" text="1 förp">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="levelTotalPrice" layoutX="908.0" layoutY="27.0" prefHeight="27.0" prefWidth="94.0" text="19.50">
+      <Label fx:id="levelTotalPrice" layoutX="916.0" layoutY="22.0" prefHeight="27.0" prefWidth="94.0" text="19.50">
          <font>
             <Font size="18.0" />
          </font>

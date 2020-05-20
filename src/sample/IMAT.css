@@ -1,3 +1,14 @@
 .aback{
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
+
+.tree-cell {
+    -fx-padding: 0.5em 0em 0.5em 0em ;
+    -fx-font-size: 16px;
+    -fx-border-color: #ECEBEB;
+    -fx-font-weight: bold ;
+}
+
+.tree-cell > .tree-disclosure-node > .arrow{
+
+}
