@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="listOfEarlierCarts" prefHeight="312.0" prefWidth="1026.0" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TitledPane fx:id="listTitledPane" contentDisplay="RIGHT" graphicTextGap="780.0" prefHeight="310.0" prefWidth="1026.0" text="2020-05-14" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<fx:root fx:id="listTitledPane" contentDisplay="RIGHT" expanded="false" graphicTextGap="600.0" prefHeight="310.0" prefWidth="1026.0" text="2020-05-14" type="TitledPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <font>
+      <Font name="System Bold" size="18.0" />
+   </font>
+   <graphic>
+      <Label fx:id="totalPrice" contentDisplay="RIGHT" graphicTextGap="30.0" prefHeight="30.0" prefWidth="180.0" text="TotalPrice">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
          <graphic>
-            <Label fx:id="totalPrice" contentDisplay="RIGHT" text="TotalPrice">
+            <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #ec5425;" text="Köp" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
-            </Label>
+            </Button>
          </graphic>
-         <content>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
-         </content>
-      </TitledPane>
-   </children>
+      </Label>
+   </graphic>
+   <content>
+      <ListView fx:id="earlierPurchases" prefHeight="200.0" prefWidth="200.0" />
+   </content>
 </fx:root>

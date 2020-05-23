@@ -7,17 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root onMouseClicked="#goToDetailView" prefHeight="266.0" prefWidth="240.0" style="-fx-border-color: #696969;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseClicked="#goToDetailView" prefHeight="272.0" prefWidth="240.0" style="-fx-background-color: WHITE;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Spinner fx:id="productCardSpinner" editable="true" layoutX="44.0" layoutY="210.0" prefHeight="25.0" prefWidth="68.0" AnchorPane.leftAnchor="44.0" />
-      <Button fx:id="addButton" layoutX="131.0" layoutY="210.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="25.0" text="Lägg till" AnchorPane.rightAnchor="50.599999999999994" />
-      <ImageView fx:id="productImage" fitHeight="117.0" fitWidth="156.0" layoutX="42.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="productName" alignment="CENTER" layoutX="2.0" layoutY="133.0" prefHeight="35.0" prefWidth="256.0" text="Matvara" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Spinner fx:id="productCardSpinner" editable="true" layoutX="44.0" layoutY="226.0" prefHeight="25.0" prefWidth="68.0" AnchorPane.leftAnchor="44.0" />
+      <Button fx:id="addButton" layoutX="130.0" layoutY="225.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #ec5425;" text="Lägg till" textFill="WHITE" AnchorPane.rightAnchor="42.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <ImageView fx:id="productImage" fitHeight="117.0" fitWidth="156.0" layoutX="42.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="productName" alignment="CENTER" layoutY="149.0" prefHeight="35.0" prefWidth="256.0" text="Matvara" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="productPrice" alignment="CENTER" layoutX="2.0" layoutY="168.0" prefHeight="35.0" prefWidth="256.0" text="Price" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="productPrice" alignment="CENTER" layoutY="184.0" prefHeight="35.0" prefWidth="256.0" text="Price" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="20.0" />
          </font>

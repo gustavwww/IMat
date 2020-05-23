@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,27 +9,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
-import se.chalmers.cse.dat216.project.IMatDataHandler;
-import se.chalmers.cse.dat216.project.Product;
-import se.chalmers.cse.dat216.project.ProductCategory;
-import se.chalmers.cse.dat216.project.ShoppingItem;
+import javafx.scene.text.Text;
+import se.chalmers.cse.dat216.project.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Controller implements Initializable {
-    @FXML FlowPane productFlowPane, earlierShoppingCartFlowPane,cartFlowPane,finishFlowPane;
+    @FXML FlowPane productFlowPane,cartFlowPane,finishFlowPane;
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping;
     @FXML TextField searchBar;
-    @FXML TextArea detailContent,detailFacts;
+    @FXML Text detailFacts, detailContent;
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
-    @FXML TreeView treeView;
+    @FXML TreeView treeView, mainTreeView;
     @FXML Spinner detailSpinner;
+    @FXML Accordion accordion;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -39,6 +39,9 @@ public class Controller implements Initializable {
     private Product selectedProduct;
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
+    private List<Order> orders = new ArrayList<>();
+    private Map<Integer, EarlierShoppingCart> earlierShoppingListMap = new HashMap<>();
+    private Random rand = new Random();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,9 +54,9 @@ public class Controller implements Initializable {
         }
         updateProductList();
         updateCart();
-        EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(this);
-        earlierShoppingCartFlowPane.getChildren().add(earlierShoppingCart);
+        detailSpinner.setValueFactory(spinnerValueFactory);
 
+        updateEarlierPurchaseList();
 
 /*
         categoryAccordion.expandedPaneProperty().addListener(
@@ -67,14 +70,19 @@ public class Controller implements Initializable {
  */
 
         fillTreeView();
-
+        mainTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
         treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
     }
 
     private void fillTreeView() {
-        TreeItem rootItem = new TreeItem("Kategorier");
-        rootItem.getChildren().add(new TreeItem("Så handlar du"));
-        rootItem.getChildren().add(new TreeItem("Populärt"));
+        TreeItem mainRootItem = new TreeItem("Kategorier");
+        mainRootItem.getChildren().add(new TreeItem("Så handlar du"));
+        mainRootItem.getChildren().add(new TreeItem("Populärt"));
+
+        mainTreeView.setRoot(mainRootItem);
+        mainTreeView.setShowRoot(false);
+
+        TreeItem rootItem = new TreeItem("Produkter");
 
         TreeItem fruitsGreens = new TreeItem("Frukt & Grönt");
         fruitsGreens.getChildren().add(new TreeItem("Frukter"));
@@ -160,7 +168,6 @@ public class Controller implements Initializable {
     private void updateProductSearchList(String search) {
         //productFlowPane.getChildren().clear();
         List<Product> products = iMatDataHandler.getProducts(getCategory(search));
-
         for (Product product : products) {
             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
         }
@@ -185,35 +192,37 @@ public class Controller implements Initializable {
             categoryLabel.setText(item.getValue().toString());
             //productFlowPane.getChildren().add(supportBack1);
 
-            if (item.getValue().toString().equals("Populärt")) {
-                updateProductList();
-            }
-            else if (item.getValue().toString().equals("Frukter")) {
-                productFlowPane.getChildren().clear();
-                productFlowPane.getChildren().add(categoryLabel);
-                categoryLabel.setText(item.getValue().toString());
+            switch (item.getValue().toString()) {
+                case "Populärt":
+                    updateProductList();
+                    break;
+                case "Frukter":
+                    productFlowPane.getChildren().clear();
+                    productFlowPane.getChildren().add(categoryLabel);
+                    categoryLabel.setText(item.getValue().toString());
 
-                fruits.forEach(fruit -> {
-                    for (Product product : iMatDataHandler.getProducts(fruit)) {
+                    fruits.forEach(fruit -> {
+                        for (Product product : iMatDataHandler.getProducts(fruit)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    break;
+                case "Grönsaker":
+                    productFlowPane.getChildren().clear();
+                    productFlowPane.getChildren().add(categoryLabel);
+                    categoryLabel.setText(item.getValue().toString());
+
+                    greens.forEach(vegetable -> {
+                        for (Product product : iMatDataHandler.getProducts(vegetable)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    break;
+                default:
+                    for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
                         productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
                     }
-                });
-            }
-            else if (item.getValue().toString().equals("Grönsaker")) {
-                productFlowPane.getChildren().clear();
-                productFlowPane.getChildren().add(categoryLabel);
-                categoryLabel.setText(item.getValue().toString());
-
-                greens.forEach(vegetable -> {
-                    for (Product product : iMatDataHandler.getProducts(vegetable)) {
-                        productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-                    }
-                });
-            }
-            else {
-                for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
-                    productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-                }
+                    break;
             }
             shopView.toFront();
         }
@@ -281,7 +290,6 @@ public class Controller implements Initializable {
             addProduct(Double.valueOf(detailSpinner.getEditor().getText()), selectedProduct);
 
         }
-
     }
 
     void addProduct(double amount,Product product){
@@ -351,6 +359,7 @@ public class Controller implements Initializable {
         }
         goToShopView();
     }
+
     @FXML
     private void goToShoppingCart(){
         updateCart();
@@ -393,11 +402,32 @@ public class Controller implements Initializable {
         wizardEnd.toFront();
     }
 
-
     @FXML
     private void goToStore(){
         storeView.toFront();
     }
+
+    private void updateEarlierPurchaseList() {
+        for (Order order : orders) {
+            EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order, this);
+            earlierShoppingListMap.put(order.getOrderNumber(), earlierShoppingCart);
+            accordion.getPanes().add(earlierShoppingCart);
+        }
+    }
+
+    @FXML
+    private void endPurchase() {
+        Order order = new Order();
+        order.setOrderNumber(rand.nextInt());
+        order.setDate(new Date());
+        order.setItems(iMatDataHandler.getShoppingCart().getItems());
+        orders.add(order);
+
+        updateEarlierPurchaseList();
+        emptyCart();
+        goToStore();
+    }
+
     void populateDetailView(Product product){
         selectedProduct = product;
         productImg.setImage(iMatDataHandler.getFXImage(iMatDataHandler.getProduct(product.getProductId())));
@@ -406,10 +436,19 @@ public class Controller implements Initializable {
                 " då slutfriteras efter att ha blivit frysta. Med våra pommes slipper du en massa " +
                 "skalande, skärande och förberedande och sparar du en massa tid. Du kan nu antingen" +
                 " tillaga dem i ugnen eller lägga dem i het olja och fritera.");
-        detailContent.setText("Energi (kcal) 150 kcal, Energi (kJ) 600 kJ, Fett 4.40 g, Varav mättat fett 0.50 g, Kolhydrater 23 g, Varav socker 0.50 g, Fiber 3 g, Protein 2.20 g, Salt 0.10 g");
+
+        String productNutrition = "";
+        String[] nutritions = {"Energi (kcal) 150 kcal", "Energi (kJ) 600 kJ", "Fett 4.40 g", "Varav mättat fett 0.50 g", "Kolhydrater 23 g", "Varav socker 0.50 g", "Fiber 3 g", "Protein 2.20 g", "Salt 0.10 g"};
+        for (String nutrition : nutritions) {
+            productNutrition += nutrition + "\n";
+        }
+        detailContent.setText(productNutrition);
+
+        //detailContent.setText("Energi (kcal) 150 kcal,\nEnergi (kJ) 600 kJ,\nFett 4.40 g,\nVarav mättat fett 0.50 g, Kolhydrater 23 g, Varav socker 0.50 g, Fiber 3 g, Protein 2.20 g, Salt 0.10 g";
         detailProductLabel.setText(product.getName());
         detailPrice.setText(product.getPrice() + " " + product.getUnit());
     }
+
     @FXML
     private void stackPaneBack(){
         shopView.toFront();

@@ -5,10 +5,26 @@
 .tree-cell {
     -fx-padding: 0.5em 0em 0.5em 0em ;
     -fx-font-size: 16px;
-    -fx-border-color: #ECEBEB;
     -fx-font-weight: bold ;
+    -fx-background-color: WHITE;
+    -fx-border-width: 0em 0em 5em 0em;
+}
+
+.tree-cell:selected {
+    -fx-background-color: #ec5425;
 }
 
 .tree-cell > .tree-disclosure-node > .arrow{
 
+}
+
+.split-pane-divider {
+  -fx-padding: 0 ;
+}
+
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: transparent;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: transparent;
 }
