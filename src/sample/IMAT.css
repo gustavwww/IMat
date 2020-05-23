@@ -2,6 +2,16 @@
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
 
+.titled-pane > .title {
+    -fx-background-color: WHITE;
+    -fx-border-color: #f5f5f5;
+}
+
+.titled-pane > .content {
+    -fx-background-color: WHITE;
+    -fx-border-color: #f5f5f5;
+}
+
 .tree-cell {
     -fx-padding: 0.5em 0em 0.5em 0em ;
     -fx-font-size: 16px;
@@ -12,10 +22,6 @@
 
 .tree-cell:selected {
     -fx-background-color: #ec5425;
-}
-
-.tree-cell > .tree-disclosure-node > .arrow{
-
 }
 
 .split-pane-divider {

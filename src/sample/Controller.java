@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,12 +27,13 @@ public class Controller implements Initializable {
     @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping;
-    @FXML TextField searchBar;
-    @FXML Text detailFacts, detailContent;
+    @FXML TextField searchBar, firstNameField,lastNameField,mailField,phoneField,postCodeField,deliveryAddressField,cardNumberField,holdersNameField,verificationCodeField,validMonthField,validYearField;
+    @FXML Text detailFacts, detailContent,noEarlierListText,customerInfoText,cardInfoText,customerInfoText1,cardInfoText1;
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
     @FXML TreeView treeView, mainTreeView;
     @FXML Spinner detailSpinner;
     @FXML Accordion accordion;
+    @FXML Button beginShopButton;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -42,6 +45,7 @@ public class Controller implements Initializable {
     private List<Order> orders = new ArrayList<>();
     private Map<Integer, EarlierShoppingCart> earlierShoppingListMap = new HashMap<>();
     private Random rand = new Random();
+    private Customer customer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,7 +60,13 @@ public class Controller implements Initializable {
         updateCart();
         detailSpinner.setValueFactory(spinnerValueFactory);
 
-        updateEarlierPurchaseList();
+        if (orders.size() != 0) {
+            noEarlierListText.setDisable(true);
+            noEarlierListText.setVisible(false);
+            beginShopButton.setDisable(true);
+            beginShopButton.setVisible(false);
+            updateEarlierPurchaseList();
+        }
 
 /*
         categoryAccordion.expandedPaneProperty().addListener(
@@ -200,7 +210,6 @@ public class Controller implements Initializable {
                     productFlowPane.getChildren().clear();
                     productFlowPane.getChildren().add(categoryLabel);
                     categoryLabel.setText(item.getValue().toString());
-
                     fruits.forEach(fruit -> {
                         for (Product product : iMatDataHandler.getProducts(fruit)) {
                             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
@@ -211,7 +220,6 @@ public class Controller implements Initializable {
                     productFlowPane.getChildren().clear();
                     productFlowPane.getChildren().add(categoryLabel);
                     categoryLabel.setText(item.getValue().toString());
-
                     greens.forEach(vegetable -> {
                         for (Product product : iMatDataHandler.getProducts(vegetable)) {
                             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
@@ -389,16 +397,21 @@ public class Controller implements Initializable {
 
     @FXML
     private void goToWizardSecond(){
+        createCustomer();
         wizardSecond.toFront();
     }
 
     @FXML
     private void goToWizardThird(){
+        setCreditCard();
+        showAllInfo();
         wizardThird.toFront();
     }
 
     @FXML
     private void goToWizardEnd(){
+        endPurchase();
+        showAllInfo();
         wizardEnd.toFront();
     }
 
@@ -408,6 +421,10 @@ public class Controller implements Initializable {
     }
 
     private void updateEarlierPurchaseList() {
+        noEarlierListText.setDisable(true);
+        noEarlierListText.setVisible(false);
+        beginShopButton.setDisable(true);
+        beginShopButton.setVisible(false);
         for (Order order : orders) {
             EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order, this);
             earlierShoppingListMap.put(order.getOrderNumber(), earlierShoppingCart);
@@ -419,8 +436,8 @@ public class Controller implements Initializable {
     private void endPurchase() {
         Order order = new Order();
         order.setOrderNumber(rand.nextInt());
-        order.setDate(new Date());
         order.setItems(iMatDataHandler.getShoppingCart().getItems());
+        order.setDate(new Date());
         orders.add(order);
 
         updateEarlierPurchaseList();
@@ -454,6 +471,44 @@ public class Controller implements Initializable {
         shopView.toFront();
        // mainViewStackPane.getChildren().get(4).toBack(); //
 
+    }
+
+    private void createCustomer() {
+        Customer customer = iMatDataHandler.getCustomer();
+        customer.setFirstName(firstNameField.getText());
+        customer.setLastName(lastNameField.getText());
+        customer.setEmail(mailField.getText());
+        customer.setPhoneNumber(phoneField.getText());
+        customer.setPostCode(postCodeField.getText());
+        customer.setAddress(deliveryAddressField.getText());
+    }
+
+    private void setCreditCard() {
+        CreditCard creditCard = iMatDataHandler.getCreditCard();
+        creditCard.setCardNumber(cardNumberField.getText());
+        creditCard.setHoldersName(holdersNameField.getText());
+        try {
+            creditCard.setVerificationCode(Integer.parseInt(verificationCodeField.getText()));
+            creditCard.setValidMonth(Integer.parseInt(validMonthField.getText()));
+            creditCard.setValidYear(Integer.parseInt(validYearField.getText()));
+        }catch (NumberFormatException e) {
+            System.out.println("Incorrect number");
+        }
+    }
+
+    private void showAllInfo() {
+        customerInfoText.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
+                + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
+                + iMatDataHandler.getCustomer().getPhoneNumber());
+        cardInfoText.setText(iMatDataHandler.getCreditCard().getHoldersName() + "\n" + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
+                + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
+                + iMatDataHandler.getCreditCard().getVerificationCode());
+        customerInfoText1.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
+                + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
+                + iMatDataHandler.getCustomer().getPhoneNumber());
+        cardInfoText1.setText(iMatDataHandler.getCreditCard().getHoldersName() + "\n" + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
+                + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
+                + iMatDataHandler.getCreditCard().getVerificationCode());
     }
 }
 
