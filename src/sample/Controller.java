@@ -355,6 +355,7 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(productCardController);
         }
         goToShopView();
+        goToStore();
     }
 
     @FXML
@@ -375,6 +376,7 @@ public class Controller implements Initializable {
     @FXML
     private void goEarlierShoppingCarts(){
         earlierShoppingCartsView.toFront();
+        storeView.toFront();
     }
 
     @FXML
