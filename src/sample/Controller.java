@@ -42,7 +42,6 @@ public class Controller implements Initializable {
     private Product selectedProduct;
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
-    private List<Order> orders = new ArrayList<>();
     private Map<Integer, EarlierShoppingCart> earlierShoppingListMap = new HashMap<>();
     private Random rand = new Random();
     private Customer customer;
@@ -60,7 +59,7 @@ public class Controller implements Initializable {
         updateCart();
         detailSpinner.setValueFactory(spinnerValueFactory);
 
-        if (orders.size() != 0) {
+        if (iMatDataHandler.getOrders().size() != 0) {
             noEarlierListText.setDisable(true);
             noEarlierListText.setVisible(false);
             beginShopButton.setDisable(true);
@@ -389,7 +388,12 @@ public class Controller implements Initializable {
     @FXML
     private void goToWizardSecond(){
         createCustomer();
-        wizardSecond.toFront();
+        if(true) {
+            wizardSecond.toFront();
+        }
+        else{
+
+        }
     }
 
     @FXML
@@ -434,7 +438,6 @@ public class Controller implements Initializable {
        iMatDataHandler.placeOrder(true);
         updateEarlierPurchaseList();
         updateCart();
-        goToStore();
     }
 
     void populateDetailView(Product product){

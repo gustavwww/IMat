@@ -1,6 +1,6 @@
 package sample;
 
-import com.sun.prism.paint.Color;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
