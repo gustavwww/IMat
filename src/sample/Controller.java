@@ -1,7 +1,6 @@
 package sample;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,8 +19,6 @@ import se.chalmers.cse.dat216.project.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Controller implements Initializable {
@@ -32,15 +29,13 @@ public class Controller implements Initializable {
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping,endDateLabel,fillAllWarningLabel,fillAllWarningLabelSecond;
     @FXML TextField searchBar, firstNameField,lastNameField,mailField,phoneField,postCodeField,deliveryAddressField,cardNumberField,holdersNameField,verificationCodeField,validMonthField,validYearField;
     @FXML Text detailFacts, detailContent,customerInfoText,cardInfoText,customerInfoText1,cardInfoText1;
-    @FXML Button shoppingCartButton,detailAdd,beginShopButton;
+    @FXML Button shoppingCartButton,detailAdd,beginShopButton,isEmptyButton;
     @FXML TreeView treeView, mainTreeView;
     @FXML Spinner detailSpinner,timeSpinnerHour,timeSpinnerMin;
     @FXML Accordion accordion;
     @FXML SplitMenuButton cardMenuButton;
-
     @FXML DatePicker datePicker;
-    @FXML
-    TextFlow noEarlierListText;
+    @FXML TextFlow noEarlierListText,isEmptyTextFlow;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -94,11 +89,26 @@ public class Controller implements Initializable {
             }
         }
 
-
-
         fillTreeView();
-        mainTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
-        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
+        mainTreeView.getSelectionModel().clearSelection();
+        mainTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                treeView.getSelectionModel().clearSelection();
+                sortedTree((TreeItem) newValue);
+            }
+        });
+        treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mainTreeView.getSelectionModel().clearSelection();
+                sortedTree((TreeItem) newValue);
+            }
+        });
+
+        // Info text and button if cart is empty
+        if (iMatDataHandler.getShoppingCart().getItems().size() != 0){
+            cartFlowPane.getChildren().remove(isEmptyTextFlow);
+            cartFlowPane.getChildren().remove(isEmptyButton);
+        }
     }
 
     private void fillTreeView() {
@@ -149,7 +159,11 @@ public class Controller implements Initializable {
     }
 
     @FXML private void emptyConfirmBoxToFront(){
-        confirmBox.toFront();
+        if (iMatDataHandler.getShoppingCart().getItems().size() != 0) {
+            confirmBox.toFront();
+        }else {
+
+        }
     }
 
     @FXML private void confirmBoxToBack(){
@@ -158,7 +172,6 @@ public class Controller implements Initializable {
 
     @FXML private void emptyCart(){
         iMatDataHandler.getShoppingCart().clear();
-
         confirmBox.toBack();
         updateCart();
     }
@@ -342,15 +355,19 @@ public class Controller implements Initializable {
             }
         }
        updateCart();
-
     }
+
     private void updateCart(){
         int items = populateShoppingCart();
         if(items == 1){
+            cartFlowPane.getChildren().remove(isEmptyTextFlow);
+            cartFlowPane.getChildren().remove(isEmptyButton);
             shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " vara " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         }
         else if(items == 0){
             shoppingCartButton.setText("Varukorgen är tom");
+            cartFlowPane.getChildren().add(isEmptyTextFlow);
+            cartFlowPane.getChildren().add(isEmptyButton);
         }
         else{
             shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " varor - " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
@@ -529,17 +546,20 @@ public class Controller implements Initializable {
             System.out.println("Incorrect number");
         }
     }
+
     @FXML
     private void setVisa(){
         iMatDataHandler.getCreditCard().setCardType("Visa");
         cardMenuButton.setText("Visa");
 
     }
+
     @FXML
     private void setMastercard(){
         iMatDataHandler.getCreditCard().setCardType("Mastercard");
         cardMenuButton.setText("Mastercard");
     }
+
     private void showAllInfo() {
         if(Integer.parseInt(timeSpinnerMin.getEditor().getText())<10){
             endDateLabel.setText(datePicker.getValue().toString()+" "+timeSpinnerHour.getEditor().getText()+":0"+timeSpinnerMin.getEditor().getText()+"");

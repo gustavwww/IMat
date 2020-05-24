@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root onMouseClicked="#goToDetailView" prefHeight="272.0" prefWidth="240.0" style="-fx-background-color: WHITE;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseClicked="#goToDetailView" prefHeight="272.0" prefWidth="240.0" style="-fx-border-color: #c9c9c9; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Spinner fx:id="productCardSpinner" editable="true" layoutX="44.0" layoutY="226.0" prefHeight="25.0" prefWidth="68.0" AnchorPane.leftAnchor="44.0" />
       <Button fx:id="addButton" layoutX="130.0" layoutY="225.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #ec5425;" text="Lägg till" textFill="WHITE" AnchorPane.rightAnchor="42.0">

@@ -4,7 +4,7 @@
 
 .titled-pane > .title {
     -fx-background-color: WHITE;
-    -fx-border-color: #f5f5f5;
+    -fx-border-color: #c9c9c9;
 }
 
 .titled-pane > .content {
@@ -22,6 +22,12 @@
 
 .tree-cell:selected {
     -fx-background-color: #ec5425;
+    -fx-text-fill: white;
+}
+
+.tree-cell:hover {
+    -fx-background-color: #ec5425;
+    -fx-text-fill: white;
 }
 
 .split-pane-divider {
