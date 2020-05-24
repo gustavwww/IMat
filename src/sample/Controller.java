@@ -416,7 +416,7 @@ public class Controller implements Initializable {
         noEarlierListText.setVisible(false);
         beginShopButton.setDisable(true);
         beginShopButton.setVisible(false);
-        for (Order order : orders) {
+        for (Order order : iMatDataHandler.getOrders()) {
             EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order, this);
             earlierShoppingListMap.put(order.getOrderNumber(), earlierShoppingCart);
             accordion.getPanes().add(earlierShoppingCart);
@@ -425,14 +425,15 @@ public class Controller implements Initializable {
 
     @FXML
     private void endPurchase() {
-        Order order = new Order();
+       /* Order order = new Order();
         order.setOrderNumber(rand.nextInt());
         order.setItems(iMatDataHandler.getShoppingCart().getItems());
         order.setDate(new Date());
         orders.add(order);
-
+      */
+       iMatDataHandler.placeOrder(true);
         updateEarlierPurchaseList();
-        emptyCart();
+        updateCart();
         goToStore();
     }
 
