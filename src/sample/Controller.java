@@ -26,19 +26,22 @@ public class Controller implements Initializable {
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd;
     @FXML ImageView productImg,shoppingCartCloseImg;
-    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping;
+    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping,endDateLabel;
     @FXML TextField searchBar, firstNameField,lastNameField,mailField,phoneField,postCodeField,deliveryAddressField,cardNumberField,holdersNameField,verificationCodeField,validMonthField,validYearField;
     @FXML Text detailFacts, detailContent,noEarlierListText,customerInfoText,cardInfoText,customerInfoText1,cardInfoText1;
     @FXML Button supportBack1,shoppingCartButton,detailAdd;
     @FXML TreeView treeView, mainTreeView;
-    @FXML Spinner detailSpinner;
+    @FXML Spinner detailSpinner,timeSpinnerHour,timeSpinnerMin;
     @FXML Accordion accordion;
     @FXML Button beginShopButton;
+    @FXML DatePicker datePicker;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Map<String, ProductCardController> productCardControllerMap = new HashMap<>();
     private SpinnerValueFactory<Double> spinnerValueFactory  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,20,1,1);
+    private SpinnerValueFactory<Double> valueFactoryHours  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,23,13,1);
+    private SpinnerValueFactory<Double> valueFactoryMin  = new SpinnerValueFactory.DoubleSpinnerValueFactory(0,59,0,1);
     private Product selectedProduct;
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
@@ -57,6 +60,8 @@ public class Controller implements Initializable {
         }
         updateProductList();
         updateCart();
+        timeSpinnerHour.setValueFactory(valueFactoryHours);
+        timeSpinnerMin.setValueFactory(valueFactoryMin);
         detailSpinner.setValueFactory(spinnerValueFactory);
 
         if (iMatDataHandler.getOrders().size() != 0) {
@@ -435,7 +440,7 @@ public class Controller implements Initializable {
         order.setDate(new Date());
         orders.add(order);
       */
-       iMatDataHandler.placeOrder(true);
+        iMatDataHandler.placeOrder(true);
         updateEarlierPurchaseList();
         updateCart();
     }
@@ -492,6 +497,12 @@ public class Controller implements Initializable {
     }
 
     private void showAllInfo() {
+        if(Integer.parseInt(timeSpinnerMin.getEditor().getText())<10){
+            endDateLabel.setText(datePicker.getValue().toString()+" "+timeSpinnerHour.getEditor().getText()+":0"+timeSpinnerMin.getEditor().getText()+"");
+        }
+        else {
+            endDateLabel.setText(datePicker.getValue().toString()+" "+timeSpinnerHour.getEditor().getText()+":"+timeSpinnerMin.getEditor().getText());
+        }
         customerInfoText.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
                 + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
                 + iMatDataHandler.getCustomer().getPhoneNumber());
