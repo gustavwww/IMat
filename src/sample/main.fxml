@@ -6,8 +6,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -224,95 +226,6 @@
                                     </Text>
                                  </children>
                               </TextFlow>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="wizardSecond" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
-                           <children>
-                              <ImageView fitHeight="126.0" fitWidth="651.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@resources/Second-Wizard-PNG.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="271.0" prefHeight="27.0" prefWidth="150.0" text="Kortnummer:" AnchorPane.topAnchor="240.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="cardNumberField" layoutX="511.0" layoutY="240.0" prefHeight="26.0" prefWidth="437.0" promptText="xxxx-xxxx-xxxx-xxxx" AnchorPane.topAnchor="240.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="holdersNameField" layoutX="511.0" layoutY="280.0" prefHeight="26.0" prefWidth="437.0" promptText="Förnamn Efternamn" AnchorPane.topAnchor="280.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="281.0" prefHeight="17.0" prefWidth="150.0" text="Kortinnehavare:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="320.0" prefHeight="17.0" prefWidth="150.0" text="Utgångsdatum:" AnchorPane.topAnchor="320.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="683.0" layoutY="320.0" prefHeight="27.0" prefWidth="50.0" text="CVC:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="verificationCodeField" layoutX="739.0" layoutY="319.0" prefHeight="30.0" prefWidth="86.0" promptText="XXX">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#goToWizardFirst" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardThird" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Nästa" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="578.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" style="-fx-background-color: #ec5425;" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
-                              <TextField fx:id="validMonthField" layoutX="511.0" layoutY="319.0" prefHeight="30.0" prefWidth="44.0" promptText="MM">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="validYearField" layoutX="574.0" layoutY="319.0" prefHeight="30.0" prefWidth="44.0" promptText="YR">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </TextField>
-                              <Label layoutX="559.0" layoutY="316.0" prefHeight="30.0" prefWidth="11.0" text="/">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="storeView" maxWidth="1280.0" minHeight="0.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0">
@@ -682,10 +595,9 @@
                                                       <Image url="@resources/icon_time.png" />
                                                    </image>
                                                 </ImageView>
-                                                <Accordion fx:id="accordion" layoutX="79.0" layoutY="121.0" prefHeight="512.0" prefWidth="1032.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                                                <TextFlow layoutY="116.0" prefHeight="64.0" prefWidth="1032.0" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                                <TextFlow fx:id="noEarlierListText" layoutY="116.0" prefHeight="64.0" prefWidth="1032.0" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                                                    <children>
-                                                      <Text fx:id="noEarlierListText" strokeType="OUTSIDE" strokeWidth="0.0" text="Här kommer dina tidigare köp finnas samlade så du smidigt kan handla både vardagsmaten och julmaten genom ett enkelt knapptryck." wrappingWidth="820.16015625">
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Här kommer dina tidigare köp finnas samlade så du smidigt kan handla både vardagsmaten och julmaten genom ett enkelt knapptryck." wrappingWidth="820.16015625">
                                                          <font>
                                                             <Font size="24.0" />
                                                          </font>
@@ -695,6 +607,7 @@
                                                       <Insets left="50.0" right="50.0" />
                                                    </padding>
                                                 </TextFlow>
+                                                <Accordion fx:id="accordion" layoutX="79.0" layoutY="121.0" prefHeight="512.0" prefWidth="1032.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                                                 <Button fx:id="beginShopButton" layoutX="464.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToPopularView" prefHeight="42.0" prefWidth="146.0" style="-fx-background-color: #ec5425;" text="Börja handla" textAlignment="CENTER" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="16.0" />
@@ -706,108 +619,6 @@
                                     </StackPane>
                                 </items>
                               </SplitPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="wizardFirst" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
-                           <children>
-                              <TextField fx:id="phoneField" layoutX="552.0" layoutY="320.0" prefHeight="26.0" prefWidth="437.0" promptText="xxxxxxxxxx" AnchorPane.topAnchor="320.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField fx:id="lastNameField" layoutX="552.0" layoutY="240.0" prefHeight="26.0" prefWidth="437.0" promptText="Efternamn" AnchorPane.topAnchor="240.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField fx:id="mailField" layoutX="552.0" layoutY="280.0" prefHeight="26.0" prefWidth="437.0" promptText="Exempel.exempel@mail.se" AnchorPane.topAnchor="280.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField fx:id="firstNameField" layoutX="552.0" layoutY="200.0" prefHeight="26.0" prefWidth="437.0" promptText="Förnamn" AnchorPane.topAnchor="200.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField fx:id="postCodeField" layoutX="552.0" layoutY="360.0" prefHeight="26.0" prefWidth="437.0" promptText="xxx-xx" AnchorPane.topAnchor="360.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField fx:id="deliveryAddressField" layoutX="552.0" layoutY="400.0" prefHeight="26.0" prefWidth="437.0" promptText="leveransadress" AnchorPane.topAnchor="400.0">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="200.0" prefHeight="17.0" prefWidth="216.0" text="Förnamn:" AnchorPane.topAnchor="200.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="240.0" prefHeight="17.0" prefWidth="216.0" text="Efternamn:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="280.0" prefHeight="17.0" prefWidth="216.0" text="Mail:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="320.0" prefHeight="17.0" prefWidth="216.0" text="Telefonnummer:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="360.0" prefHeight="17.0" prefWidth="216.0" text="Postkod:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="400.0" prefHeight="17.0" prefWidth="216.0" text="Leveransaddress:">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Spinner fx:id="timeSpinnerHour" editable="true" layoutX="803.0" layoutY="440.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.topAnchor="440.0" />
-                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="440.0" prefHeight="27.0" prefWidth="216.0" text="Datum och tid för leverans:" AnchorPane.topAnchor="440.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <DatePicker fx:id="datePicker" layoutX="552.0" layoutY="440.0" promptText="Datum" />
-                              <Spinner fx:id="timeSpinnerMin" editable="true" layoutX="929.0" layoutY="440.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.topAnchor="440.0" />
-                              <Label layoutX="754.0" layoutY="440.0" text="Tim:" AnchorPane.topAnchor="440.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="881.0" layoutY="440.0" text="Min:" AnchorPane.topAnchor="440.0">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <ImageView fitHeight="126.0" fitWidth="651.0" layoutX="347.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
-                                 <image>
-                                    <Image url="@resources/First-Wizard-PNG.png" />
-                                 </image>
-                              </ImageView>
-                              <Button layoutX="588.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToStore" style="-fx-background-color: #ec5425;" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="262.0" layoutY="551.0" mnemonicParsing="false" onAction="#goToStore" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
-                              <Button layoutX="1025.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToWizardSecond" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Nästa" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Button>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="wizardThird" prefHeight="610.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;">
@@ -924,7 +735,7 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </padding>
                                           </TextFlow>
-                                          <TextFlow layoutX="100.0" layoutY="732.0" prefHeight="104.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                          <TextFlow layoutX="100.0" layoutY="732.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
                                              <padding>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </padding>
@@ -955,6 +766,227 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Button>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="wizardFirst" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+                           <children>
+                              <TextField fx:id="phoneField" layoutX="552.0" layoutY="320.0" prefHeight="26.0" prefWidth="437.0" promptText="xxxxxxxxxx" AnchorPane.topAnchor="320.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="lastNameField" layoutX="552.0" layoutY="240.0" prefHeight="26.0" prefWidth="437.0" promptText="Efternamn" AnchorPane.topAnchor="240.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="mailField" layoutX="552.0" layoutY="280.0" prefHeight="26.0" prefWidth="437.0" promptText="Exempel.exempel@mail.se" AnchorPane.topAnchor="280.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="firstNameField" layoutX="552.0" layoutY="200.0" prefHeight="26.0" prefWidth="437.0" promptText="Förnamn" AnchorPane.topAnchor="200.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="postCodeField" layoutX="552.0" layoutY="360.0" prefHeight="26.0" prefWidth="437.0" promptText="xxx-xx" AnchorPane.topAnchor="360.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <TextField fx:id="deliveryAddressField" layoutX="552.0" layoutY="400.0" prefHeight="26.0" prefWidth="437.0" promptText="leveransadress" AnchorPane.topAnchor="400.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                              </TextField>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="200.0" prefHeight="17.0" prefWidth="216.0" text="Förnamn:" AnchorPane.topAnchor="200.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="240.0" prefHeight="17.0" prefWidth="216.0" text="Efternamn:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="280.0" prefHeight="17.0" prefWidth="216.0" text="Mail:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="320.0" prefHeight="17.0" prefWidth="216.0" text="Telefonnummer:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="360.0" prefHeight="17.0" prefWidth="216.0" text="Postkod:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="400.0" prefHeight="17.0" prefWidth="216.0" text="Leveransaddress:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Spinner fx:id="timeSpinnerHour" editable="true" layoutX="803.0" layoutY="440.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.topAnchor="440.0" />
+                              <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="440.0" prefHeight="27.0" prefWidth="216.0" text="Datum och tid för leverans:" AnchorPane.topAnchor="440.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePicker" layoutX="552.0" layoutY="440.0" promptText="Datum" />
+                              <Spinner fx:id="timeSpinnerMin" editable="true" layoutX="929.0" layoutY="440.0" prefHeight="25.0" prefWidth="58.0" AnchorPane.topAnchor="440.0" />
+                              <Label layoutX="754.0" layoutY="440.0" text="Tim:" AnchorPane.topAnchor="440.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="881.0" layoutY="440.0" text="Min:" AnchorPane.topAnchor="440.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="126.0" fitWidth="651.0" layoutX="347.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@resources/First-Wizard-PNG.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="588.0" layoutY="541.0" mnemonicParsing="false" onAction="#goToStore" style="-fx-background-color: #ec5425;" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="262.0" layoutY="551.0" mnemonicParsing="false" onAction="#goToStore" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="1025.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToWizardSecond" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Nästa" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Label fx:id="fillAllWarningLabel" alignment="CENTER" layoutX="626.0" layoutY="485.0" text="Fyll i alla fält för att gå vidare" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="wizardSecond" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="651.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
+                                 <image>
+                                    <Image url="@resources/Second-Wizard-PNG.png" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="271.0" prefHeight="27.0" prefWidth="150.0" text="Kortnummer:" AnchorPane.leftAnchor="347.0" AnchorPane.topAnchor="240.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cardNumberField" layoutX="511.0" layoutY="240.0" prefHeight="26.0" prefWidth="437.0" promptText="xxxx-xxxx-xxxx-xxxx" AnchorPane.topAnchor="240.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="holdersNameField" layoutX="511.0" layoutY="280.0" prefHeight="26.0" prefWidth="437.0" promptText="Förnamn Efternamn" AnchorPane.leftAnchor="511.0" AnchorPane.topAnchor="280.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="281.0" prefHeight="17.0" prefWidth="150.0" text="Kortinnehavare:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="347.0" layoutY="320.0" prefHeight="17.0" prefWidth="150.0" text="Utgångsdatum:" AnchorPane.topAnchor="320.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER_RIGHT" layoutX="683.0" layoutY="320.0" prefHeight="27.0" prefWidth="50.0" text="CVC:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="verificationCodeField" layoutX="739.0" layoutY="319.0" prefHeight="30.0" prefWidth="86.0" promptText="XXX">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#goToWizardFirst" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardThird" prefWidth="128.0" style="-fx-background-color: #ec5425;" text="Nästa" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Button>
+                              <Button layoutX="578.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" style="-fx-background-color: #ec5425;" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Button>
+                              <TextField fx:id="validMonthField" layoutX="511.0" layoutY="319.0" prefHeight="30.0" prefWidth="44.0" promptText="MM">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="validYearField" layoutX="574.0" layoutY="319.0" prefHeight="30.0" prefWidth="44.0" promptText="YR">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Label layoutX="559.0" layoutY="316.0" prefHeight="30.0" prefWidth="11.0" text="/">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <SplitMenuButton fx:id="cardMenuButton" layoutX="509.0" layoutY="362.0" mnemonicParsing="false" text="välj kort" AnchorPane.leftAnchor="511.0" AnchorPane.topAnchor="200.0">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#setMastercard" text="MasterCard" />
+                                  <MenuItem mnemonicParsing="false" onAction="#setVisa" text="Visa" />
+                                </items>
+                              </SplitMenuButton>
+                              <Label alignment="CENTER_RIGHT" layoutX="361.0" layoutY="199.0" prefHeight="27.0" prefWidth="150.0" text="Korttyp:" AnchorPane.leftAnchor="347.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="fillAllWarningLabelSecond" alignment="CENTER" layoutX="553.0" layoutY="465.0" text="Fyll i alla fält för att gå vidare" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
