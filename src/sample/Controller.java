@@ -68,17 +68,6 @@ public class Controller implements Initializable {
             updateEarlierPurchaseList();
         }
 
-/*
-        categoryAccordion.expandedPaneProperty().addListener(
-                (ObservableValue<? extends TitledPane> ov, TitledPane old_val,
-                 TitledPane new_val) -> {
-                    if (new_val != null) {
-                    sortedProductList(categoryAccordion.getExpandedPane().getText());
-                    }
-                });
-        detailSpinner.setValueFactory(spinnerValueFactory);
- */
-
         fillTreeView();
         mainTreeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
         treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> sortedTree((TreeItem) newValue));
@@ -156,7 +145,7 @@ public class Controller implements Initializable {
         for(Product product : iMatDataHandler.findProducts(searchBar.getText())){
             productFlowPane.getChildren().add(new ProductCardController(product,this));
         }
-        categoryLabel.setText("Sökning efter: " + searchBar.getText() + " (" + (productFlowPane.getChildren().size()-2) + " träffar)");
+        categoryLabel.setText("Sökning efter: " + searchBar.getText() + " (" + (productFlowPane.getChildren().size()-1) + " träffar)");
 
     }
 
