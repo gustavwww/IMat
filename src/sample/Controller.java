@@ -83,9 +83,7 @@ public class Controller implements Initializable {
             beginShopButton.setDisable(true);
             beginShopButton.setVisible(false);
             for (Order order : iMatDataHandler.getOrders()) {
-                EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order, this);
-
-                accordion.getPanes().add(earlierShoppingCart);
+                updateEarlierPurchaseList(order);
             }
         }
 
@@ -267,7 +265,15 @@ public class Controller implements Initializable {
         else if (item.getValue().toString().equals("Så handlar du")) {
             goToHowTo();
         }
-
+        else if (item.getValue().toString().equals("Frukt & Grönt")) {
+            item.setExpanded(true);
+        }
+        else if (item.getValue().toString().equals("Dryck")) {
+            item.setExpanded(true);
+        }
+        else if (item.getValue().toString().equals("Skafferi")) {
+            item.setExpanded(true);
+        }
     }
 
     private ProductCategory getCategory(String category){
@@ -312,6 +318,10 @@ public class Controller implements Initializable {
         finishTotalWithShipping.setText(""+round(iMatDataHandler.getShoppingCart().getTotal()+49,2));
         finishTotal.setText(""+round(iMatDataHandler.getShoppingCart().getTotal(),2));
         return products;
+    }
+
+    private void addEarlierShoppingList() {
+
     }
 
     @FXML
@@ -475,20 +485,15 @@ public class Controller implements Initializable {
         beginShopButton.setDisable(true);
         beginShopButton.setVisible(false);
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order,this);
+        earlierShoppingCart.totalPrice.setText(String.valueOf(iMatDataHandler.getShoppingCart().getTotal()));
         earlierShoppingCart.setCollapsible(true);
-        accordion.getPanes().add(earlierShoppingCart);
+        accordion.getPanes().add(0, earlierShoppingCart);
+        iMatDataHandler.getShoppingCart().clear();
     }
 
     @FXML
     private void endPurchase() {
-       /* Order order = new Order();
-        order.setOrderNumber(rand.nextInt());
-        order.setItems(iMatDataHandler.getShoppingCart().getItems());
-        order.setDate(new Date());
-        orders.add(order);
-      */
-
-        updateEarlierPurchaseList( iMatDataHandler.placeOrder(true));
+        updateEarlierPurchaseList(iMatDataHandler.placeOrder(false));
         updateCart();
     }
 
