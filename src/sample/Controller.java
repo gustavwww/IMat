@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,7 +26,7 @@ import java.util.*;
 public class Controller implements Initializable {
     @FXML FlowPane productFlowPane,cartFlowPane,finishFlowPane;
     @FXML StackPane mainViewStackPane;
-    @FXML AnchorPane detailView, earlierShoppingCartsView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd;
+    @FXML AnchorPane detailView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd,earlierpAnchorP;
     @FXML ImageView productImg,shoppingCartCloseImg;
     @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping,endDateLabel,fillAllWarningLabel,fillAllWarningLabelSecond;
     @FXML TextField searchBar, firstNameField,lastNameField,mailField,phoneField,postCodeField,deliveryAddressField,cardNumberField,holdersNameField,verificationCodeField,validMonthField,validYearField;
@@ -36,6 +38,7 @@ public class Controller implements Initializable {
     @FXML SplitMenuButton cardMenuButton;
     @FXML DatePicker datePicker;
     @FXML TextFlow noEarlierListText,isEmptyTextFlow;
+    @FXML ScrollPane earlierShoppingCartsView;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -320,10 +323,6 @@ public class Controller implements Initializable {
         return products;
     }
 
-    private void addEarlierShoppingList() {
-
-    }
-
     @FXML
     private void detailAddProduct(){
         if(selectedProduct.getUnitSuffix().equals("st")||selectedProduct.getUnitSuffix().equals("förp")){
@@ -485,10 +484,18 @@ public class Controller implements Initializable {
         beginShopButton.setDisable(true);
         beginShopButton.setVisible(false);
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order,this);
-        earlierShoppingCart.totalPrice.setText(String.valueOf(iMatDataHandler.getShoppingCart().getTotal()));
-        earlierShoppingCart.setCollapsible(true);
+        earlierShoppingCart.totalPrice.setText(String.valueOf(getTotal(order)));
+        //earlierShoppingCart.setCollapsible(true);
         accordion.getPanes().add(0, earlierShoppingCart);
         iMatDataHandler.getShoppingCart().clear();
+    }
+
+    private double getTotal(Order order) {
+        double total = 0;
+        for (ShoppingItem item : order.getItems()) {
+            total += item.getTotal();
+        }
+        return total;
     }
 
     @FXML

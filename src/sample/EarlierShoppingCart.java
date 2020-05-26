@@ -34,10 +34,18 @@ public class EarlierShoppingCart extends TitledPane {
         this.parentController = controller;
         this.order = order;
 
-        listTitledPane.setText(order.getDate().toString());
+        // set date of purchase to DD MM YR format
+        String[] strArr = order.getDate().toLocaleString().split(" ");
+        String date  = "";
+        for (int i = 0; i < strArr.length - 1; i++) {
+            date += strArr[i] + " ";
+        }
+        listTitledPane.setText(date);
 
         for (ShoppingItem item : order.getItems()) {
-            earlierPurchases.getItems().add(item.getProduct());
+            ShoppingCartLevelController product = new ShoppingCartLevelController(item.getProduct(), controller, item.getAmount());
+            product.setMaxWidth(970);
+            earlierPurchases.getItems().add(product);
         }
     }
 }
