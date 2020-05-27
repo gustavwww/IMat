@@ -17,7 +17,6 @@ public class EarlierShoppingCart extends TitledPane {
     @FXML Label totalPrice;
     @FXML TitledPane listTitledPane;
 
-    private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     private Controller parentController;
     private Order order;
 
@@ -48,5 +47,8 @@ public class EarlierShoppingCart extends TitledPane {
             product.setMaxWidth(970);
             earlierPurchases.getChildren().add(product);
         }
+    }
+    @FXML private void buyThisCart(){
+        parentController.buyEarlierCart(order);
     }
 }

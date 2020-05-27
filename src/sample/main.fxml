@@ -145,7 +145,7 @@
               <items>
                 <AnchorPane maxHeight="50.0" minHeight="50.0" minWidth="0.0" prefHeight="50.0" prefWidth="1278.0" style="-fx-background-color: WHITE;">
                      <children>
-                        <TextField fx:id="searchBar" layoutX="279.0" layoutY="13.0" onAction="#search" prefHeight="26.0" prefWidth="437.0" promptText="Sök">
+                        <TextField fx:id="searchBar" layoutX="279.0" layoutY="13.0" onAction="#search" prefHeight="26.0" prefWidth="314.0" promptText="Sök">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
@@ -189,6 +189,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </ImageView>
+                        <Button layoutX="607.0" layoutY="10.0" mnemonicParsing="false" onAction="#search" prefHeight="30.0" prefWidth="65.0" text="Sök" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
@@ -229,6 +237,9 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <TextFlow layoutX="100.0" layoutY="235.0" prefHeight="234.0" prefWidth="410.0" AnchorPane.leftAnchor="100.0">
                                  <children>
@@ -333,14 +344,23 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Spinner fx:id="timeSpinnerHour" editable="true" layoutX="803.0" layoutY="440.0" prefHeight="40.0" prefWidth="60.0" AnchorPane.topAnchor="480.0" />
+                              <Spinner fx:id="timeSpinnerHour" editable="true" layoutX="803.0" layoutY="440.0" prefHeight="40.0" prefWidth="60.0" AnchorPane.topAnchor="480.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Spinner>
                               <Label alignment="CENTER_RIGHT" layoutX="320.0" layoutY="440.0" prefHeight="27.0" prefWidth="216.0" text="Datum och tid för leverans:" AnchorPane.topAnchor="480.0">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="datePicker" layoutX="552.0" layoutY="440.0" prefHeight="40.0" promptText="Datum" AnchorPane.topAnchor="480.0" />
-                              <Spinner fx:id="timeSpinnerMin" editable="true" layoutX="929.0" layoutY="440.0" prefHeight="40.0" prefWidth="60.0" AnchorPane.topAnchor="480.0" />
+                              <DatePicker fx:id="datePicker" layoutX="552.0" layoutY="440.0" prefHeight="40.0" promptText="Datum" AnchorPane.topAnchor="480.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
+                              <Spinner fx:id="timeSpinnerMin" editable="true" layoutX="929.0" layoutY="440.0" prefHeight="40.0" prefWidth="60.0" AnchorPane.topAnchor="480.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></Spinner>
                               <Label layoutX="754.0" layoutY="440.0" text="Tim:" AnchorPane.topAnchor="480.0">
                                  <font>
                                     <Font size="18.0" />
@@ -442,16 +462,25 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardThird" prefWidth="128.0" text="Nästa" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button layoutX="578.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <TextField fx:id="validMonthField" layoutX="521.0" layoutY="329.0" prefHeight="37.0" prefWidth="48.0" promptText="MM" AnchorPane.topAnchor="329.0">
                                  <cursor>
@@ -629,16 +658,25 @@
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardEnd" text="Slutför och betala" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#goToWizardSecond" prefWidth="128.0" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </AnchorPane>

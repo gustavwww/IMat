@@ -37,7 +37,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Line>
-      <Label fx:id="levelProductNumber" alignment="CENTER" layoutX="851.0" layoutY="11.0" prefHeight="30.0" prefWidth="50.0" text="1 förp" AnchorPane.rightAnchor="220.0">
+      <Label fx:id="levelProductNumber" alignment="CENTER" layoutX="851.0" layoutY="11.0" prefHeight="30.0" prefWidth="70.0" text="1 förp" AnchorPane.rightAnchor="213.0">
          <font>
             <Font size="18.0" />
          </font>
@@ -47,10 +47,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1029.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1029.0" layoutY="16.0" onMouseClicked="#removeWholeProduct" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
          <image>
             <Image url="@resources/bin.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </fx:root>

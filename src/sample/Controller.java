@@ -341,6 +341,18 @@ public class Controller implements Initializable {
        updateCart();
     }
 
+    void removeWholeProduct( Product product){
+        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
+            if(shoppingItem.getProduct().equals(product)){
+
+                    iMatDataHandler.getShoppingCart().getItems().remove(shoppingItem);
+                    updateCart();
+                    return;
+            }
+        }
+        updateCart();
+    }
+
     private void updateCart(){
         int items = populateShoppingCart();
         if(items == 1){
@@ -357,6 +369,11 @@ public class Controller implements Initializable {
             shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " varor - " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         }
 
+    }
+    void buyEarlierCart(Order order){
+        for(ShoppingItem shoppingItem: order.getItems()){
+            addProduct(shoppingItem.getAmount(),shoppingItem.getProduct());
+        }
     }
     @FXML
     private void mouseTrap(Event event){

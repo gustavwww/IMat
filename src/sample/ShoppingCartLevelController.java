@@ -56,4 +56,8 @@ public class ShoppingCartLevelController extends AnchorPane {
     @FXML private void removeProduct(){
         parentController.removeProduct(1,product);
     }
+    @FXML private void removeWholeProduct(){
+        parentController.removeWholeProduct(product);
+    }
+
 }

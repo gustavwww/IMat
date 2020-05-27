@@ -16,7 +16,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
          <graphic>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #ec5425;" text="Köp" textFill="WHITE">
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#buyThisCart" prefHeight="30.0" prefWidth="64.0" style="-fx-background-color: #ec5425;" text="Köp" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
