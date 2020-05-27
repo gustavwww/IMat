@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.FlowPane;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Order;
 import se.chalmers.cse.dat216.project.ShoppingItem;
@@ -12,7 +13,7 @@ import se.chalmers.cse.dat216.project.ShoppingItem;
 import java.io.IOException;
 
 public class EarlierShoppingCart extends TitledPane {
-    @FXML ListView earlierPurchases;
+    @FXML FlowPane earlierPurchases;
     @FXML Label totalPrice;
     @FXML TitledPane listTitledPane;
 
@@ -45,7 +46,7 @@ public class EarlierShoppingCart extends TitledPane {
         for (ShoppingItem item : order.getItems()) {
             ShoppingCartLevelController product = new ShoppingCartLevelController(item.getProduct(), controller, item.getAmount());
             product.setMaxWidth(970);
-            earlierPurchases.getItems().add(product);
+            earlierPurchases.getChildren().add(product);
         }
     }
 }

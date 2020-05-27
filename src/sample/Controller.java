@@ -59,7 +59,7 @@ public class Controller implements Initializable {
             productList.add(productCardController);
         }
         updateProductList();
-        updateCart();
+
         timeSpinnerHour.setValueFactory(valueFactoryHours);
         timeSpinnerMin.setValueFactory(valueFactoryMin);
         detailSpinner.setValueFactory(spinnerValueFactory);
@@ -110,6 +110,7 @@ public class Controller implements Initializable {
             cartFlowPane.getChildren().remove(isEmptyTextFlow);
             cartFlowPane.getChildren().remove(isEmptyButton);
         }
+        updateCart();
     }
 
     private void fillTreeView() {
@@ -190,30 +191,6 @@ public class Controller implements Initializable {
         categoryLabel.setText("Sökning efter: " + searchBar.getText() + " (" + (productFlowPane.getChildren().size()-1) + " träffar)");
 
     }
-
-    @FXML
-    private void sortedProductList(String search){
-        productFlowPane.getChildren().clear();
-        productFlowPane.getChildren().add(categoryLabel);
-        //productFlowPane.getChildren().add(supportBack1);
-        productCardControllerMap.clear();
-        for (Product product : iMatDataHandler.getProducts(getCategory(search))) {
-            ProductCardController productCardController = new ProductCardController(product, this);
-            productCardControllerMap.put(product.getName(), productCardController);
-        }
-        updateProductSearchList(search);
-        categoryLabel.setText(search);
-        shopView.toFront();
-    }
-
-    private void updateProductSearchList(String search) {
-        //productFlowPane.getChildren().clear();
-        List<Product> products = iMatDataHandler.getProducts(getCategory(search));
-        for (Product product : products) {
-            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-        }
-    }
-
     private void updateProductList() {
         productFlowPane.getChildren().clear();
         productFlowPane.getChildren().add(categoryLabel);
@@ -231,8 +208,6 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().clear();
             productFlowPane.getChildren().add(categoryLabel);
             categoryLabel.setText(item.getValue().toString());
-            //productFlowPane.getChildren().add(supportBack1);
-
             switch (item.getValue().toString()) {
                 case "Populärt":
                     updateProductList();
@@ -486,9 +461,8 @@ public class Controller implements Initializable {
         beginShopButton.setVisible(false);
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order,this);
         earlierShoppingCart.totalPrice.setText(String.valueOf(getTotal(order)));
-        //earlierShoppingCart.setCollapsible(true);
         accordion.getPanes().add(0, earlierShoppingCart);
-        iMatDataHandler.getShoppingCart().clear();
+
     }
 
     private double getTotal(Order order) {
@@ -501,7 +475,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void endPurchase() {
-        updateEarlierPurchaseList(iMatDataHandler.placeOrder(false));
+        updateEarlierPurchaseList(iMatDataHandler.placeOrder(true));
         updateCart();
     }
 
