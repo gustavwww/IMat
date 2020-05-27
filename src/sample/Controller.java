@@ -39,6 +39,7 @@ public class Controller implements Initializable {
     @FXML DatePicker datePicker;
     @FXML TextFlow noEarlierListText,isEmptyTextFlow;
     @FXML ScrollPane earlierShoppingCartsView;
+    @FXML CheckBox saveInfoCheckBox;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -49,7 +50,7 @@ public class Controller implements Initializable {
     private Product selectedProduct;
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
-
+    private boolean wantsToSave = false;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -449,10 +450,11 @@ public class Controller implements Initializable {
     @FXML
     private void goToWizardThird(){
         setCreditCard();
-        showAllInfo();
+
         if((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard")) && !cardNumberField.getText().equals("") && !holdersNameField.getText().equals("")) {
             wizardThird.toFront();
             fillAllWarningLabelSecond.setTextFill(Paint.valueOf("BLACK"));
+            showAllInfo();
         }
         else {
             fillAllWarningLabelSecond.setTextFill(Paint.valueOf("RED"));
@@ -461,8 +463,8 @@ public class Controller implements Initializable {
 
     @FXML
     private void goToWizardEnd(){
-        endPurchase();
         showAllInfo();
+        endPurchase();
         wizardEnd.toFront();
     }
 
@@ -494,6 +496,23 @@ public class Controller implements Initializable {
     private void endPurchase() {
         updateEarlierPurchaseList(iMatDataHandler.placeOrder(true));
         updateCart();
+
+        if(!saveInfoCheckBox.isSelected()){
+            cardNumberField.setText("");
+            validMonthField.setText("");
+            validYearField.setText("");
+            verificationCodeField.setText("");
+            holdersNameField.setText("");
+            firstNameField.setText("");
+            lastNameField.setText("");
+            mailField.setText("");
+            deliveryAddressField.setText("");
+            postCodeField.setText("");
+            phoneField.setText("");
+            datePicker.getEditor().setText("");
+            iMatDataHandler.reset();
+            cardMenuButton.setText("välj kort");
+        }
     }
 
     void populateDetailView(Product product){
