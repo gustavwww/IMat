@@ -422,7 +422,8 @@ public class Controller implements Initializable {
     private void goToShopView(){ shopView.toFront();}
 
     @FXML
-    private void goToSupport(){ supportView.toFront();}
+    private void goToSupport(){ supportView.toFront();
+    storeView.toFront();}
 
     @FXML
     private void goToHowTo(){ howToView.toFront();}
