@@ -16,11 +16,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.util.Callback;
 import se.chalmers.cse.dat216.project.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.*;
 
 public class Controller implements Initializable {
@@ -90,6 +93,29 @@ public class Controller implements Initializable {
                 updateEarlierPurchaseList(order);
             }
         }
+
+        Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>()
+        {
+            public DateCell call(final DatePicker datePicker)
+            {
+                return new DateCell()
+                {
+                    @Override
+                    public void updateItem(LocalDate item, boolean empty)
+                    {
+                        super.updateItem(item, empty);
+                        DayOfWeek day = DayOfWeek.from(item);
+                        LocalDate today = LocalDate.now();
+                        setDisable(empty || item.compareTo(today) < 0);
+                        if (day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY)
+                        {
+                            this.setTextFill(Color.RED);
+                        }
+                    }
+                };
+            }
+        };
+        datePicker.setDayCellFactory(dayCellFactory);
 
         fillTreeView();
         mainTreeView.getSelectionModel().clearSelection();
@@ -512,6 +538,7 @@ public class Controller implements Initializable {
             datePicker.getEditor().setText("");
             iMatDataHandler.reset();
             cardMenuButton.setText("välj kort");
+
         }
     }
 
@@ -590,6 +617,7 @@ public class Controller implements Initializable {
         else {
             endDateLabel.setText(datePicker.getValue().toString()+" "+timeSpinnerHour.getEditor().getText()+":"+timeSpinnerMin.getEditor().getText());
         }
+
         customerInfoText.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
                 + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
                 + iMatDataHandler.getCustomer().getPhoneNumber());
