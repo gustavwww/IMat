@@ -47,7 +47,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1029.0" layoutY="16.0" onMouseClicked="#removeWholeProduct" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
+      <ImageView fx:id="emptyCan" fitHeight="20.0" fitWidth="20.0" layoutX="1029.0" layoutY="16.0" onMouseClicked="#removeWholeProduct" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0">
          <image>
             <Image url="@resources/bin.png" />
          </image>

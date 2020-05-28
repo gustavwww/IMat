@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Line;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
@@ -19,6 +20,8 @@ public class ShoppingCartLevelController extends AnchorPane {
     ImageView shoppingCartImg;
     @FXML
     Label levelName,levelUnitPrice,levelProductNumber,levelTotalPrice;
+    @FXML
+    Line levelRemove;
     IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     Product product;
     private Controller parentController;
@@ -60,4 +63,7 @@ public class ShoppingCartLevelController extends AnchorPane {
         parentController.removeWholeProduct(product);
     }
 
+    void disableButtons(){
+
+    }
 }
