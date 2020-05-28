@@ -1,9 +1,28 @@
 .aback{
-    -fx-background-color: rgba(0, 0, 0, 0.75);
+    -fx-background-color: rgba(0, 0, 0, 0.85);
+}
+
+#shoppingCartCloseImg {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+#shoppingCartCloseImg:hover {
+    -fx-background-color: red;
+}
+
+#goToHowToLink:hover {
+    -fx-underline: true;
 }
 
 #productCard:hover {
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
+}
+
+.spinner > .text-field {
+    -fx-background-color: white;
+    -fx-border-color: #c9c9c9;
+    -fx-font-size: 14;
 }
 
 .image:hover{
@@ -58,6 +77,13 @@
 .split-pane:vertical > .split-pane-divider {
    -fx-background-color: transparent;
 }
+
 .scroll-bar:vertical {
-    -fx-pref-width: 16.5;
+    -fx-pref-width: 18;
+    -fx-background-color: white;
+    -fx-border-color: #c9c9c9;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #c9c9c9;
 }

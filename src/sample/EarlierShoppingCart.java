@@ -43,11 +43,12 @@ public class EarlierShoppingCart extends TitledPane {
         listTitledPane.setText(date);
 
         for (ShoppingItem item : order.getItems()) {
-            ShoppingCartLevelController product = new ShoppingCartLevelController(item.getProduct(), controller, item.getAmount());
-            product.setMaxWidth(970);
-            earlierPurchases.getChildren().add(product);
+            EarlierPurchaseItem item1 = new EarlierPurchaseItem(controller, item);
+            item1.setMaxWidth(970);
+            earlierPurchases.getChildren().add(item1);
         }
     }
+
     @FXML private void buyThisCart(){
         parentController.buyEarlierCart(order);
     }

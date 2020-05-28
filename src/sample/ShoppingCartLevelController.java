@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
 import se.chalmers.cse.dat216.project.Product;
 
@@ -16,15 +15,12 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class ShoppingCartLevelController extends AnchorPane {
-    @FXML
-    ImageView shoppingCartImg;
-    @FXML
-    Label levelName,levelUnitPrice,levelProductNumber,levelTotalPrice;
-    @FXML
-    Line levelRemove;
+    @FXML ImageView shoppingCartImg;
+    @FXML Label levelName,levelUnitPrice,levelProductNumber,levelTotalPrice;
     IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
     Product product;
     private Controller parentController;
+
     public ShoppingCartLevelController(Product product, Controller controller, double amount) {
         this.product = product;
         parentController = controller;

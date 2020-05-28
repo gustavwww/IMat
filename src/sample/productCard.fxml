@@ -10,8 +10,8 @@
 
 <fx:root fx:id="productCard" onMouseClicked="#goToDetailView" prefHeight="272.0" prefWidth="240.0" style="-fx-border-color: #c9c9c9; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Spinner fx:id="productCardSpinner" editable="true" layoutX="16.0" layoutY="226.0" prefHeight="43.0" prefWidth="102.0" AnchorPane.leftAnchor="15.0" />
-      <Button fx:id="addButton" layoutX="130.0" layoutY="225.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="43.0" prefWidth="95.0" text="Lägg till" textFill="WHITE" AnchorPane.rightAnchor="17.0">
+      <Spinner fx:id="productCardSpinner" editable="true" layoutX="37.0" layoutY="220.0" prefHeight="35.0" prefWidth="58.0" AnchorPane.leftAnchor="30.0" />
+      <Button fx:id="addButton" layoutX="112.0" layoutY="220.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="38.0" prefWidth="106.0" text="Lägg till" textFill="WHITE" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -19,12 +19,12 @@
             <Cursor fx:constant="HAND" />
          </cursor></Button>
       <ImageView fx:id="productImage" fitHeight="117.0" fitWidth="156.0" layoutX="42.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="productName" alignment="CENTER" layoutY="149.0" prefHeight="35.0" prefWidth="256.0" text="Matvara" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="productName" alignment="CENTER" layoutX="2.0" layoutY="147.0" prefHeight="35.0" prefWidth="256.0" text="Matvara" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="productPrice" alignment="CENTER" layoutY="184.0" prefHeight="35.0" prefWidth="256.0" text="Price" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="productPrice" alignment="CENTER" layoutX="1.0" layoutY="178.0" prefHeight="35.0" prefWidth="256.0" text="Price" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0">
          <font>
             <Font size="20.0" />
          </font>

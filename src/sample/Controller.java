@@ -30,8 +30,8 @@ public class Controller implements Initializable {
     @FXML FlowPane productFlowPane,cartFlowPane,finishFlowPane;
     @FXML StackPane mainViewStackPane;
     @FXML AnchorPane detailView, supportView, shopView, howToView,shoppingCartPane,confirmBox,storeView,wizardFirst,wizardSecond,wizardThird,wizardEnd,earlierpAnchorP;
-    @FXML ImageView productImg,shoppingCartCloseImg;
-    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping,endDateLabel,fillAllWarningLabel,fillAllWarningLabelSecond;
+    @FXML ImageView productImg;
+    @FXML Label detailProductLabel,detailPrice,categoryLabel,cartNumberOffProducts,cartPriceTotal,finishNWares,finishTotal,finishTotalWithShipping,endDateLabel,fillAllWarningLabel,fillAllWarningLabelSecond,verifiedLabel;
     @FXML TextField searchBar, firstNameField,lastNameField,mailField,phoneField,postCodeField,deliveryAddressField,cardNumberField,holdersNameField,verificationCodeField,validMonthField,validYearField;
     @FXML Text detailFacts, detailContent,customerInfoText,cardInfoText,customerInfoText1,cardInfoText1;
     @FXML Button shoppingCartButton,detailAdd,beginShopButton,isEmptyButton;
@@ -41,8 +41,8 @@ public class Controller implements Initializable {
     @FXML SplitMenuButton cardMenuButton;
     @FXML DatePicker datePicker;
     @FXML TextFlow noEarlierListText,isEmptyTextFlow;
-    @FXML ScrollPane earlierShoppingCartsView;
-    @FXML CheckBox saveInfoCheckBox;
+    @FXML ScrollPane earlierShoppingCartsView,shopScrollPane;
+    @FXML CheckBox saveInfoCheckBox,savePayInfoCheckBox;
 
     private ArrayList<ProductCardController> productList  = new ArrayList<>();; //created this in order to make the transition between categories faster
     private IMatDataHandler iMatDataHandler = IMatDataHandler.getInstance();
@@ -54,6 +54,7 @@ public class Controller implements Initializable {
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
     private boolean wantsToSave = false;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -138,11 +139,14 @@ public class Controller implements Initializable {
             cartFlowPane.getChildren().remove(isEmptyButton);
         }
         updateCart();
+        fillAllWarningLabel.setVisible(false);
+        fillAllWarningLabelSecond.setVisible(false);
     }
 
     private void fillTreeView() {
         TreeItem mainRootItem = new TreeItem("Kategorier");
         mainRootItem.getChildren().add(new TreeItem("Så handlar du"));
+        mainRootItem.getChildren().add(new TreeItem("Support"));
         mainRootItem.getChildren().add(new TreeItem("Populärt"));
 
         mainTreeView.setRoot(mainRootItem);
@@ -236,9 +240,7 @@ public class Controller implements Initializable {
             productFlowPane.getChildren().add(categoryLabel);
             categoryLabel.setText(item.getValue().toString());
             switch (item.getValue().toString()) {
-                case "Populärt":
-                    updateProductList();
-                    break;
+                case "Populärt": updateProductList(); break;
                 case "Frukter":
                     productFlowPane.getChildren().clear();
                     productFlowPane.getChildren().add(categoryLabel);
@@ -262,13 +264,16 @@ public class Controller implements Initializable {
                 default:
                     for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
                         productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-                    }
-                    break;
+                    }break;
             }
             shopView.toFront();
+            shopScrollPane.setVvalue(0);
         }
         else if (item.getValue().toString().equals("Så handlar du")) {
             goToHowTo();
+        }
+        else if (item.getValue().toString().equals("Support")) {
+            goToSupport();
         }
         else if (item.getValue().toString().equals("Frukt & Grönt")) {
             item.setExpanded(true);
@@ -314,14 +319,13 @@ public class Controller implements Initializable {
             }
            else {
                products = products + (int) shoppingItem.getAmount();
-            }
-
+           }
         }
         cartPriceTotal.setText("Totalpris: "+round(iMatDataHandler.getShoppingCart().getTotal()+49,2)+" kr"); //+49 i och med frakt
-        cartNumberOffProducts.setText("Totalt "+products+" varor");
+        cartNumberOffProducts.setText("Totalt "+ iMatDataHandler.getShoppingCart().getItems().size() + " varor");
         finishNWares.setText("Totalt "+products+" varor");
-        finishTotalWithShipping.setText(""+round(iMatDataHandler.getShoppingCart().getTotal()+49,2));
-        finishTotal.setText(""+round(iMatDataHandler.getShoppingCart().getTotal(),2));
+        finishTotalWithShipping.setText(""+round(iMatDataHandler.getShoppingCart().getTotal()+49,2) + " kr");
+        finishTotal.setText(""+round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         return products;
     }
 
@@ -346,7 +350,6 @@ public class Controller implements Initializable {
            if(shoppingItem.getProduct().equals(product)){
                shoppingItem.setAmount(shoppingItem.getAmount()+amount);
                updateCart();
-
                return;
            }
        }
@@ -410,14 +413,7 @@ public class Controller implements Initializable {
     private void closeShoppingCart(){
         shoppingCartPane.toBack();
     }
-    @FXML private void ShoppingCartHoverEnter(){
-        shoppingCartCloseImg.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
-                "sample/resources/icon_close_hover.png")));
-    }
-    @FXML private void ShoppingCartHoverLeave(){
-        shoppingCartCloseImg.setImage(new Image(getClass().getClassLoader().getResourceAsStream(
-                "sample/resources/icon_close.png")));
-    }
+
     @FXML
     private void goToPopularView(){
         productFlowPane.getChildren().clear();
@@ -455,35 +451,39 @@ public class Controller implements Initializable {
 
     @FXML
     private void goToWizardFirst(){
-        shoppingCartPane.toBack();
-        confirmBox.toBack();
-        wizardFirst.toFront();
+        if (iMatDataHandler.getShoppingCart().getItems().size() != 0) {
+            shoppingCartPane.toBack();
+            confirmBox.toBack();
+            wizardFirst.toFront();
+        }
     }
 
     @FXML
     private void goToWizardSecond(){
         createCustomer();
-        if(iMatDataHandler.isCustomerComplete() && !datePicker.getEditor().getText().equals("") && !timeSpinnerMin.getEditor().getText().equals("") && !timeSpinnerHour.getEditor().getText().equals("")) {
+        if(customerIsLegit()) {
             wizardSecond.toFront();
-            fillAllWarningLabel.setTextFill(Paint.valueOf("BLACK"));
+            //fillAllWarningLabel.setTextFill(Paint.valueOf("BLACK"));
+            fillAllWarningLabel.setVisible(false);
         }
         else{
             fillAllWarningLabel.setTextFill(Paint.valueOf("RED"));
+            fillAllWarningLabel.setVisible(true);
         }
-
     }
 
     @FXML
     private void goToWizardThird(){
         setCreditCard();
-
-        if((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard")) && !cardNumberField.getText().equals("") && !holdersNameField.getText().equals("")) {
+        if(payInfoIsLegit()) {
             wizardThird.toFront();
-            fillAllWarningLabelSecond.setTextFill(Paint.valueOf("BLACK"));
+            //fillAllWarningLabelSecond.setTextFill(Paint.valueOf("BLACK"));
+            fillAllWarningLabelSecond.setVisible(false);
             showAllInfo();
         }
         else {
             fillAllWarningLabelSecond.setTextFill(Paint.valueOf("RED"));
+            fillAllWarningLabelSecond.setVisible(true);
         }
     }
 
@@ -499,6 +499,22 @@ public class Controller implements Initializable {
         storeView.toFront();
     }
 
+    private boolean customerIsLegit() {
+        return (iMatDataHandler.isCustomerComplete() && !datePicker.getEditor().getText().equals("")
+                && !timeSpinnerMin.getEditor().getText().equals("") && !timeSpinnerHour.getEditor().getText().equals("")
+                && phoneField.getText().length() == 10 && phoneField.getText().matches("[0-9]+")
+                && postCodeField.getText().length() == 5 && postCodeField.getText().matches("[0-9]+"));
+    }
+
+    private boolean payInfoIsLegit() {
+        return ((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard"))
+                && cardNumberField.getText().matches("[0-9]+") && cardNumberField.getText().length() == 16
+                && !holdersNameField.getText().equals("") && verificationCodeField.getText().matches("[0-9]+")
+                && verificationCodeField.getText().length() == 3 && validMonthField.getText().matches("[0-9]+")
+                && validMonthField.getText().length() == 2 && validYearField.getText().matches("[0-9]+")
+                && validYearField.getText().length() == 2);
+    }
+
     private void updateEarlierPurchaseList(Order order) {
         noEarlierListText.setDisable(true);
         noEarlierListText.setVisible(false);
@@ -507,7 +523,6 @@ public class Controller implements Initializable {
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order,this);
         earlierShoppingCart.totalPrice.setText(String.valueOf(getTotal(order)));
         accordion.getPanes().add(0, earlierShoppingCart);
-
     }
 
     private double getTotal(Order order) {
@@ -522,13 +537,9 @@ public class Controller implements Initializable {
     private void endPurchase() {
         updateEarlierPurchaseList(iMatDataHandler.placeOrder(true));
         updateCart();
+        verifiedLabel.setText("Ett bekräftelsemejl har skickats till " + mailField.getText());
 
         if(!saveInfoCheckBox.isSelected()){
-            cardNumberField.setText("");
-            validMonthField.setText("");
-            validYearField.setText("");
-            verificationCodeField.setText("");
-            holdersNameField.setText("");
             firstNameField.setText("");
             lastNameField.setText("");
             mailField.setText("");
@@ -536,9 +547,15 @@ public class Controller implements Initializable {
             postCodeField.setText("");
             phoneField.setText("");
             datePicker.getEditor().setText("");
-            iMatDataHandler.reset();
+            //iMatDataHandler.reset();
+        }
+        else if (!savePayInfoCheckBox.isSelected()) {
+            cardNumberField.setText("");
+            validMonthField.setText("");
+            validYearField.setText("");
+            verificationCodeField.setText("");
+            holdersNameField.setText("");
             cardMenuButton.setText("välj kort");
-
         }
     }
 
@@ -580,7 +597,6 @@ public class Controller implements Initializable {
         customer.setPostAddress(postCodeField.getText());
         customer.setAddress(deliveryAddressField.getText());
         customer.setMobilePhoneNumber(phoneField.getText());
-
     }
 
     private void setCreditCard() {
