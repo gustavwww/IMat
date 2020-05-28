@@ -328,7 +328,7 @@ public class Controller implements Initializable {
     @FXML
     private void detailAddProduct(){
         if(selectedProduct.getUnitSuffix().equals("st")||selectedProduct.getUnitSuffix().equals("förp")){
-            if(Double.parseDouble(detailSpinner.getEditor().getText()) % 1 == 0){
+            if(Double.parseDouble(detailSpinner.getEditor().getText()) % 1 == 0 && Double.parseDouble(detailSpinner.getEditor().getText()) > 0){
                 addProduct(Double.parseDouble(detailSpinner.getEditor().getText()),selectedProduct);
 
             }
