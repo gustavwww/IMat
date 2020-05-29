@@ -313,7 +313,7 @@ public class Controller implements Initializable {
         int products = 0;
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
-            finishFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
+            finishFlowPane.getChildren().add(new EarlierPurchaseItem(this,shoppingItem));
             if(shoppingItem.getProduct().getUnit().equals("kg")){
                 products = products+1;
             }
@@ -540,6 +540,7 @@ public class Controller implements Initializable {
         verifiedLabel.setText("Ett bekräftelsemejl har skickats till " + mailField.getText());
 
         if(!saveInfoCheckBox.isSelected()){
+            iMatDataHandler.reset();
             firstNameField.setText("");
             lastNameField.setText("");
             mailField.setText("");
@@ -547,9 +548,9 @@ public class Controller implements Initializable {
             postCodeField.setText("");
             phoneField.setText("");
             datePicker.getEditor().setText("");
-            //iMatDataHandler.reset();
         }
-        else if (!savePayInfoCheckBox.isSelected()) {
+        if (!savePayInfoCheckBox.isSelected()) {
+            iMatDataHandler.reset();
             cardNumberField.setText("");
             validMonthField.setText("");
             validYearField.setText("");
@@ -634,18 +635,19 @@ public class Controller implements Initializable {
             endDateLabel.setText(datePicker.getValue().toString()+" "+timeSpinnerHour.getEditor().getText()+":"+timeSpinnerMin.getEditor().getText());
         }
 
-        customerInfoText.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
-                + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
-                + iMatDataHandler.getCustomer().getPhoneNumber());
-        cardInfoText.setText(iMatDataHandler.getCreditCard().getCardType() + "\n" + iMatDataHandler.getCreditCard().getHoldersName() + "\n" + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
-                + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
-                + iMatDataHandler.getCreditCard().getVerificationCode());
-        customerInfoText1.setText(iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
-                + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + iMatDataHandler.getCustomer().getEmail() + "\n"
-                + iMatDataHandler.getCustomer().getPhoneNumber());
-        cardInfoText1.setText(iMatDataHandler.getCreditCard().getHoldersName() + "\n" + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
-                + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
-                + iMatDataHandler.getCreditCard().getVerificationCode());
+        customerInfoText.setText("Namn: " + iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
+                + "Leveransdress: " + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + "E-mail: " +  iMatDataHandler.getCustomer().getEmail() + "\n"
+                + "Tel: " + iMatDataHandler.getCustomer().getPhoneNumber());
+        cardInfoText.setText("Korttyp: " + iMatDataHandler.getCreditCard().getCardType() + "\n" + "Kortinnehavare: " + iMatDataHandler.getCreditCard().getHoldersName() + "\n" + "Kortnr: " + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
+                + "Utgångsdatum: " + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
+                + "CVC: " + iMatDataHandler.getCreditCard().getVerificationCode());
+        customerInfoText1.setText("Namn: " + iMatDataHandler.getCustomer().getFirstName() + " " + iMatDataHandler.getCustomer().getLastName() + "\n"
+                + "Leveransdress: " + iMatDataHandler.getCustomer().getAddress() + " " + iMatDataHandler.getCustomer().getPostCode() + "\n" + "E-mail: " +  iMatDataHandler.getCustomer().getEmail() + "\n"
+                + "Tel: " + iMatDataHandler.getCustomer().getPhoneNumber());
+        cardInfoText1.setText("Korttyp: " + iMatDataHandler.getCreditCard().getCardType() + "\n" + "Kortinnehavare: " + iMatDataHandler.getCreditCard().getHoldersName() + "\n" + "Kortnr: " + iMatDataHandler.getCreditCard().getCardNumber() + "\n"
+                + "Utgångsdatum: " + iMatDataHandler.getCreditCard().getValidMonth() + " " + iMatDataHandler.getCreditCard().getValidYear() + "\n"
+                + "CVC: " + iMatDataHandler.getCreditCard().getVerificationCode());
+
     }
 }
 

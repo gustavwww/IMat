@@ -264,180 +264,6 @@
                               </TextFlow>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="wizardThird" prefHeight="610.0" prefWidth="1280.0">
-                           <children>
-                              <ScrollPane hbarPolicy="NEVER" prefHeight="957.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;" styleClass="scroll-bar" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <content>
-                                    <AnchorPane prefHeight="917.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;">
-                                       <children>
-                                          <ImageView fitHeight="126.0" fitWidth="651.0" layoutX="331.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
-                                             <image>
-                                                <Image url="@resources/Third-Wizard-PNG.png" />
-                                             </image>
-                                          </ImageView>
-                                          <ScrollPane hbarPolicy="NEVER" layoutX="291.0" layoutY="168.0" prefHeight="184.0" prefWidth="1080.0" style="-fx-background-color: WHITE;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
-                                             <content>
-                                                <FlowPane fx:id="finishFlowPane" prefHeight="174.0" prefWidth="1077.0" style="-fx-background-color: WHITE; -fx-border-color: #c9c9c9;" />
-                                             </content>
-                                          </ScrollPane>
-                                          <Label layoutX="100.0" layoutY="343.0" prefHeight="27.0" prefWidth="553.0" style="-fx-background-color: white;" text="Varor" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="343.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label layoutX="100.0" layoutY="368.0" prefHeight="27.0" prefWidth="574.0" style="-fx-background-color: white;" text="Frakt" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="368.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label fx:id="finishNWares" layoutX="100.0" layoutY="393.0" prefHeight="30.0" prefWidth="1079.0" style="-fx-background-color: white;" text="Totalt (8 varor)" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="393.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label fx:id="finishTotal" alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="343.0" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: white;" text="397.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="343.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="376.0" prefHeight="27.0" prefWidth="116.0" text="49.0 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="368.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label fx:id="finishTotalWithShipping" alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="405.0" prefHeight="30.0" prefWidth="165.0" text="446.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="393.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets right="10.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label layoutX="100.0" layoutY="440.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: WHITE;" text="Hemleverans" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label fx:id="endDateLabel" layoutX="100.0" layoutY="476.0" prefHeight="27.0" prefWidth="401.0" style="-fx-background-color: WHITE;" text="Datum" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="476.0">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="5.0" right="5.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label layoutX="100.0" layoutY="520.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: WHITE;" text="Leveransuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                          </Label>
-                                          <Label layoutX="100.0" layoutY="692.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: white;" text="Betalningsuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="692.0">
-                                             <font>
-                                                <Font name="System Bold" size="20.0" />
-                                             </font>
-                                             <padding>
-                                                <Insets left="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                          </Label>
-                                          <Button fx:id="changeDelliveryDateButton" layoutX="1119.2" layoutY="440.0" mnemonicParsing="false" onAction="#goToWizardFirst" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                          <Button fx:id="changeDeliveryButton" layoutX="1119.2" layoutY="520.0" mnemonicParsing="false" onAction="#goToWizardFirst" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                          <Button fx:id="changePaymentButton" layoutX="1119.2" layoutY="693.0" mnemonicParsing="false" onAction="#goToWizardSecond" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="693.0">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                          <TextFlow layoutX="100.0" layoutY="555.0" prefHeight="120.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
-                                             <children>
-                                                <Text fx:id="customerInfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Personuppgifter">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                          </TextFlow>
-                                          <TextFlow layoutX="100.0" layoutY="727.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="727.0">
-                                             <padding>
-                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                             </padding>
-                                             <children>
-                                                <Text fx:id="cardInfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Kortuppgifter">
-                                                   <font>
-                                                      <Font size="16.0" />
-                                                   </font>
-                                                </Text>
-                                             </children>
-                                          </TextFlow>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </ScrollPane>
-                              <Button layoutX="576.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" prefHeight="51.0" prefWidth="129.0" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardEnd" style="-fx-background-color: #ff6f00;" text="Slutför och betala" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#goToWizardSecond" prefWidth="128.0" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </AnchorPane>
                         <AnchorPane fx:id="wizardFirst" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f5f5f5;">
                            <children>
                               <TextField fx:id="firstNameField" layoutX="333.0" layoutY="204.0" prefHeight="26.0" prefWidth="300.0" promptText="Förnamn">
@@ -711,6 +537,180 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </CheckBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="wizardThird" prefHeight="610.0" prefWidth="1280.0">
+                           <children>
+                              <ScrollPane hbarPolicy="NEVER" prefHeight="957.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;" styleClass="scroll-bar" AnchorPane.bottomAnchor="123.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <content>
+                                    <AnchorPane prefHeight="917.0" prefWidth="1280.0" style="-fx-background-color: #f5f5f5;">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="651.0" layoutX="331.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="314.0" AnchorPane.topAnchor="32.0">
+                                             <image>
+                                                <Image url="@resources/Third-Wizard-PNG.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ScrollPane hbarPolicy="NEVER" layoutX="291.0" layoutY="168.0" prefHeight="184.0" prefWidth="1080.0" style="-fx-background-color: WHITE;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                             <content>
+                                                <FlowPane fx:id="finishFlowPane" prefHeight="174.0" prefWidth="1077.0" prefWrapLength="1015.0" style="-fx-background-color: WHITE; -fx-border-color: #c9c9c9;" />
+                                             </content>
+                                          </ScrollPane>
+                                          <Label layoutX="100.0" layoutY="343.0" prefHeight="27.0" prefWidth="553.0" style="-fx-background-color: white;" text="Varor" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="343.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label layoutX="100.0" layoutY="368.0" prefHeight="27.0" prefWidth="574.0" style="-fx-background-color: white;" text="Frakt" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="368.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="finishNWares" layoutX="100.0" layoutY="393.0" prefHeight="30.0" prefWidth="1079.0" style="-fx-background-color: white;" text="Totalt (8 varor)" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="393.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="finishTotal" alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="343.0" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: white;" text="397.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="343.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="376.0" prefHeight="27.0" prefWidth="116.0" text="49.0 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="368.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="finishTotalWithShipping" alignment="CENTER_RIGHT" layoutX="1066.4" layoutY="405.0" prefHeight="30.0" prefWidth="165.0" text="446.5 kr" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="393.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label layoutX="100.0" layoutY="440.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: WHITE;" text="Hemleverans" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label fx:id="endDateLabel" layoutX="100.0" layoutY="476.0" prefHeight="27.0" prefWidth="401.0" style="-fx-background-color: WHITE;" text="Datum" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="476.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label layoutX="100.0" layoutY="520.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: WHITE;" text="Leveransuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Label layoutX="100.0" layoutY="692.0" prefHeight="27.0" prefWidth="264.0" style="-fx-background-color: white;" text="Betalningsuppgifter" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="692.0">
+                                             <font>
+                                                <Font name="System Bold" size="20.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Button fx:id="changeDelliveryDateButton" layoutX="1119.2" layoutY="440.0" mnemonicParsing="false" onAction="#goToWizardFirst" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="changeDeliveryButton" layoutX="1119.2" layoutY="520.0" mnemonicParsing="false" onAction="#goToWizardFirst" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="520.0">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <Button fx:id="changePaymentButton" layoutX="1119.2" layoutY="693.0" mnemonicParsing="false" onAction="#goToWizardSecond" style="-fx-background-color: transparent;" text="Ändra" textFill="#003dff" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="693.0">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Button>
+                                          <TextFlow layoutX="100.0" layoutY="555.0" prefHeight="120.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                             <children>
+                                                <Text fx:id="customerInfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Personuppgifter">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </TextFlow>
+                                          <TextFlow layoutX="100.0" layoutY="727.0" prefHeight="126.0" prefWidth="1080.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="727.0">
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                             <children>
+                                                <Text fx:id="cardInfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Kortuppgifter">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </TextFlow>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </ScrollPane>
+                              <Button layoutX="576.0" layoutY="550.0" mnemonicParsing="false" onAction="#goToStore" prefHeight="51.0" prefWidth="129.0" text="Startsida" textFill="WHITE" AnchorPane.leftAnchor="570.0" AnchorPane.rightAnchor="570.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardEnd" style="-fx-background-color: #ff6f00;" text="Slutför och betala" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#goToWizardSecond" prefWidth="128.0" text="Tillbaka" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="550.0">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </children>
                         </AnchorPane>
                       <AnchorPane fx:id="storeView" maxWidth="1280.0" minHeight="0.0" minWidth="1280.0" prefHeight="100.0" prefWidth="1280.0">
