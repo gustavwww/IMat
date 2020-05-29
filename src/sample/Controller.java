@@ -1,5 +1,6 @@
 package sample;
 
+import com.sun.source.tree.Tree;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -53,6 +54,8 @@ public class Controller implements Initializable {
     private Product selectedProduct;
     private EnumSet<ProductCategory> fruits = EnumSet.of(ProductCategory.EXOTIC_FRUIT, ProductCategory.FRUIT, ProductCategory.CITRUS_FRUIT, ProductCategory.MELONS);
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
+    private EnumSet<ProductCategory> drinks = EnumSet.of(ProductCategory.HOT_DRINKS, ProductCategory.COLD_DRINKS);
+    private EnumSet<ProductCategory> pantry = EnumSet.of(ProductCategory.FLOUR_SUGAR_SALT, ProductCategory.POTATO_RICE, ProductCategory.PASTA);
     private boolean wantsToSave = false;
 
     @Override
@@ -232,19 +235,58 @@ public class Controller implements Initializable {
         }
     }
 
-    private void sortedTree(TreeItem item) {
-        if (getCategory(item.getValue().toString()) != null || item.getValue().toString().equals("Populärt") || item.getValue().toString().equals("Frukter") ||
-                item.getValue().toString().equals("Grönsaker")) {
+    private void clearProductView(TreeItem item) {
+        productFlowPane.getChildren().clear();
+        productFlowPane.getChildren().add(categoryLabel);
+        categoryLabel.setText(item.getValue().toString());
+    }
 
-            productFlowPane.getChildren().clear();
-            productFlowPane.getChildren().add(categoryLabel);
-            categoryLabel.setText(item.getValue().toString());
+    private boolean isProductCategory(TreeItem item) {
+        return (getCategory(item.getValue().toString()) != null || item.getValue().toString().equals("Populärt")
+                || item.getValue().toString().equals("Frukter") || item.getValue().toString().equals("Grönsaker")
+                || item.getValue().toString().equals("Frukt & Grönt")
+                || item.getValue().toString().equals("Dryck") || item.getValue().toString().equals("Skafferi"));
+    }
+
+    private void sortedTree(TreeItem item) {
+        if (isProductCategory(item)) {
+            clearProductView(item);
             switch (item.getValue().toString()) {
                 case "Populärt": updateProductList(); break;
+                case "Frukt & Grönt":
+                    clearProductView(item);
+                    item.setExpanded(true);
+                    fruits.forEach(fruit -> {
+                        for (Product product : iMatDataHandler.getProducts(fruit)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    greens.forEach(vegetable -> {
+                        for (Product product : iMatDataHandler.getProducts(vegetable)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    break;
+                case "Dryck":
+                    clearProductView(item);
+                    item.setExpanded(true);
+                    drinks.forEach(drink -> {
+                        for (Product product : iMatDataHandler.getProducts(drink)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    break;
+                case "Skafferi":
+                    clearProductView(item);
+                    item.setExpanded(true);
+                    pantry.forEach(pantryItem -> {
+                        for (Product product : iMatDataHandler.getProducts(pantryItem)) {
+                            productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
+                        }
+                    });
+                    break;
                 case "Frukter":
-                    productFlowPane.getChildren().clear();
-                    productFlowPane.getChildren().add(categoryLabel);
-                    categoryLabel.setText(item.getValue().toString());
+                    clearProductView(item);
                     fruits.forEach(fruit -> {
                         for (Product product : iMatDataHandler.getProducts(fruit)) {
                             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
@@ -252,9 +294,7 @@ public class Controller implements Initializable {
                     });
                     break;
                 case "Grönsaker":
-                    productFlowPane.getChildren().clear();
-                    productFlowPane.getChildren().add(categoryLabel);
-                    categoryLabel.setText(item.getValue().toString());
+                    clearProductView(item);;
                     greens.forEach(vegetable -> {
                         for (Product product : iMatDataHandler.getProducts(vegetable)) {
                             productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
@@ -264,7 +304,8 @@ public class Controller implements Initializable {
                 default:
                     for (Product product : iMatDataHandler.getProducts(getCategory(item.getValue().toString()))) {
                         productFlowPane.getChildren().add(productCardControllerMap.get(product.getName()));
-                    }break;
+                    }
+                    break;
             }
             shopView.toFront();
             shopScrollPane.setVvalue(0);
@@ -274,15 +315,6 @@ public class Controller implements Initializable {
         }
         else if (item.getValue().toString().equals("Support")) {
             goToSupport();
-        }
-        else if (item.getValue().toString().equals("Frukt & Grönt")) {
-            item.setExpanded(true);
-        }
-        else if (item.getValue().toString().equals("Dryck")) {
-            item.setExpanded(true);
-        }
-        else if (item.getValue().toString().equals("Skafferi")) {
-            item.setExpanded(true);
         }
     }
 
