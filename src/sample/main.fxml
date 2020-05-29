@@ -923,42 +923,6 @@
                                                 </ScrollPane>
                                              </children>
                                           </AnchorPane>
-                                          <ScrollPane fx:id="earlierShoppingCartsView" hbarPolicy="NEVER" prefHeight="549.0" prefWidth="1072.0">
-                                             <content>
-                                                <AnchorPane fx:id="earlierpAnchorP" maxWidth="1075.0" minHeight="624.0" minWidth="1066.0" prefWidth="1075.0" style="-fx-background-color: #f5f5f5;">
-                                                   <children>
-                                                      <Label layoutX="20.0" layoutY="44.0" prefHeight="54.0" prefWidth="214.0" text="Tidigare köp" AnchorPane.leftAnchor="20.0">
-                                                         <font>
-                                                            <Font name="System Bold" size="36.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="41.0" fitWidth="48.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@resources/icon_time.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <TextFlow fx:id="noEarlierListText" layoutY="116.0" prefHeight="64.0" prefWidth="1032.0" textAlignment="CENTER" AnchorPane.bottomAnchor="453.4" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                                                         <children>
-                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Här kommer dina tidigare köp finnas samlade så du smidigt kan handla både vardagsmaten och julmaten genom ett enkelt knapptryck." wrappingWidth="820.16015625">
-                                                               <font>
-                                                                  <Font size="24.0" />
-                                                               </font>
-                                                            </Text>
-                                                         </children>
-                                                         <padding>
-                                                            <Insets left="50.0" right="50.0" />
-                                                         </padding>
-                                                      </TextFlow>
-                                                      <Button fx:id="beginShopButton" layoutX="464.0" layoutY="213.0" mnemonicParsing="false" onAction="#goToPopularView" prefHeight="42.0" prefWidth="146.0" text="Börja handla" textAlignment="CENTER" textFill="WHITE">
-                                                         <font>
-                                                            <Font name="System Bold" size="16.0" />
-                                                         </font>
-                                                      </Button>
-                                                      <Accordion fx:id="accordion" layoutX="79.0" layoutY="121.0" prefWidth="1015.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="40.0" />
-                                                   </children>
-                                                </AnchorPane>
-                                             </content>
-                                          </ScrollPane>
                                           <AnchorPane fx:id="howToView" prefHeight="638.0" prefWidth="1066.0" style="-fx-background-color: #f5f5f5;">
                                              <children>
                                                 <ImageView fitHeight="274.0" fitWidth="240.0" layoutX="432.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
@@ -1054,6 +1018,42 @@
                                                 </ScrollPane>
                                              </children>
                                           </AnchorPane>
+                                          <ScrollPane fx:id="earlierShoppingCartsView" hbarPolicy="NEVER" prefHeight="549.0" prefWidth="1072.0">
+                                             <content>
+                                                <AnchorPane fx:id="earlierpAnchorP" maxWidth="1075.0" minHeight="624.0" minWidth="1066.0" prefWidth="1075.0" style="-fx-background-color: #f5f5f5;">
+                                                   <children>
+                                                      <Label layoutX="20.0" layoutY="44.0" prefHeight="54.0" prefWidth="214.0" text="Tidigare köp" AnchorPane.leftAnchor="20.0">
+                                                         <font>
+                                                            <Font name="System Bold" size="36.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ImageView fitHeight="41.0" fitWidth="48.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@resources/icon_time.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <TextFlow fx:id="noEarlierListText" layoutY="116.0" prefHeight="64.0" prefWidth="1032.0" textAlignment="CENTER" AnchorPane.bottomAnchor="453.4" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                                                         <children>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Här kommer dina tidigare köp finnas samlade så du smidigt kan handla både vardagsmaten och julmaten genom ett enkelt knapptryck." wrappingWidth="820.16015625">
+                                                               <font>
+                                                                  <Font size="24.0" />
+                                                               </font>
+                                                            </Text>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets left="50.0" right="50.0" />
+                                                         </padding>
+                                                      </TextFlow>
+                                                      <Button fx:id="beginShopButton" layoutX="464.0" layoutY="213.0" mnemonicParsing="false" onAction="#goToPopularView" prefHeight="42.0" prefWidth="146.0" text="Börja handla" textAlignment="CENTER" textFill="WHITE">
+                                                         <font>
+                                                            <Font name="System Bold" size="16.0" />
+                                                         </font>
+                                                      </Button>
+                                                      <Accordion fx:id="accordion" layoutX="79.0" layoutY="121.0" prefWidth="1015.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="40.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </StackPane>
                                 </items>

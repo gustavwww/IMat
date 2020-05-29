@@ -502,13 +502,21 @@ public class Controller implements Initializable {
     }
 
     private boolean customerIsLegit() {
+        phoneField.setText(convertStringToNoSpaces(phoneField.getText()));
+        postCodeField.setText(convertStringToNoSpaces(postCodeField.getText()));
         return (iMatDataHandler.isCustomerComplete() && !datePicker.getEditor().getText().equals("")
                 && !timeSpinnerMin.getEditor().getText().equals("") && !timeSpinnerHour.getEditor().getText().equals("")
                 && phoneField.getText().length() == 10 && phoneField.getText().matches("[0-9]+")
                 && postCodeField.getText().length() == 5 && postCodeField.getText().matches("[0-9]+"));
     }
 
+    private String convertStringToNoSpaces(String string) {
+        string = string.replaceAll(" ","");
+        return string;
+    }
+
     private boolean payInfoIsLegit() {
+        cardNumberField.setText(convertStringToNoSpaces(cardNumberField.getText()));
         if((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard"))
                 && cardNumberField.getText().matches("[0-9]+") && cardNumberField.getText().length() == 16
                 && !holdersNameField.getText().equals("") && verificationCodeField.getText().matches("[0-9]+")
