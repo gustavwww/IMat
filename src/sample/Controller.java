@@ -313,7 +313,9 @@ public class Controller implements Initializable {
         int products = 0;
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
-            finishFlowPane.getChildren().add(new EarlierPurchaseItem(this,shoppingItem));
+            EarlierPurchaseItem item = new EarlierPurchaseItem(this, shoppingItem);
+            item.setPrefWidth(1077);
+            finishFlowPane.getChildren().add(item);
             if(shoppingItem.getProduct().getUnit().equals("kg")){
                 products = products+1;
             }
@@ -525,7 +527,7 @@ public class Controller implements Initializable {
         beginShopButton.setDisable(true);
         beginShopButton.setVisible(false);
         EarlierShoppingCart earlierShoppingCart = new EarlierShoppingCart(order,this);
-        earlierShoppingCart.totalPrice.setText(String.valueOf(getTotal(order)));
+        earlierShoppingCart.totalPrice.setText(round(getTotal(order), 2) + " kr");
         accordion.getPanes().add(0, earlierShoppingCart);
     }
 

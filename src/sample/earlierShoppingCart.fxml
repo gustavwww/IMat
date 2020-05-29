@@ -25,6 +25,6 @@
       </Label>
    </graphic>
    <content>
-      <FlowPane fx:id="earlierPurchases" alignment="BASELINE_CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" prefWrapLength="50.0" rowValignment="BASELINE" />
+      <FlowPane fx:id="earlierPurchases" prefHeight="200.0" prefWidth="200.0" prefWrapLength="1015.0" />
    </content>
 </fx:root>

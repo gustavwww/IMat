@@ -44,7 +44,7 @@ public class EarlierShoppingCart extends TitledPane {
 
         for (ShoppingItem item : order.getItems()) {
             EarlierPurchaseItem item1 = new EarlierPurchaseItem(controller, item);
-            item1.setMaxWidth(970);
+            item1.setPrefWidth(1015);
             earlierPurchases.getChildren().add(item1);
         }
     }
