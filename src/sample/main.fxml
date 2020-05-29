@@ -53,7 +53,7 @@
             </AnchorPane>
             <AnchorPane fx:id="shoppingCartPane" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <AnchorPane onMouseClicked="#closeShoppingCart" prefHeight="200.0" prefWidth="200.0" styleClass="aback" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="aback" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                      <children>
                         <Button fx:id="emptyCart" layoutX="60.0" layoutY="524.0" mnemonicParsing="false" onAction="#emptyConfirmBoxToFront" prefHeight="39.0" prefWidth="177.0" text="Töm Varukorg" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="60.0">
                            <font>

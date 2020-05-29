@@ -507,12 +507,16 @@ public class Controller implements Initializable {
     }
 
     private boolean payInfoIsLegit() {
-        return ((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard"))
+        if((cardMenuButton.getText().equals("Visa") || cardMenuButton.getText().equals("Mastercard"))
                 && cardNumberField.getText().matches("[0-9]+") && cardNumberField.getText().length() == 16
                 && !holdersNameField.getText().equals("") && verificationCodeField.getText().matches("[0-9]+")
                 && verificationCodeField.getText().length() == 3 && validMonthField.getText().matches("[0-9]+")
-                && validMonthField.getText().length() == 2 && validYearField.getText().matches("[0-9]+")
-                && validYearField.getText().length() == 2);
+                && validYearField.getText().matches("[0-9]+")
+                && validYearField.getText().length() == 2){
+            return Integer.parseInt(validMonthField.getText())<13 && ((Integer.parseInt("20"+validYearField.getText())>=new Date().getYear()+1900 && Integer.parseInt(validMonthField.getText())>new Date().getMonth()+1)
+            || Integer.parseInt("20"+validYearField.getText())>new Date().getYear()+1900);
+        }
+        return false;
     }
 
     private void updateEarlierPurchaseList(Order order) {
