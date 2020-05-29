@@ -37,7 +37,7 @@ public class EarlierPurchaseItem extends AnchorPane {
         levelUnitPrice.setText(item.getProduct().getPrice()  + " " + item.getProduct().getUnit());
         levelTotalPrice.setText(controller.round(item.getTotal(), 2) + " kr");
         if(item.getProduct().getUnitSuffix().equals("st") || item.getProduct().getUnitSuffix().equals("förp")  ) {
-            levelProductNumber.setText(item.getAmount() + " " + item.getProduct().getUnitSuffix());
+            levelProductNumber.setText((int) item.getAmount() + " " + item.getProduct().getUnitSuffix());
         }
         else {
             levelProductNumber.setText(controller.round(item.getAmount(), 2) + " " + item.getProduct().getUnitSuffix());
