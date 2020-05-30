@@ -390,7 +390,7 @@ public class Controller implements Initializable {
         }
     }
 
-    Timeline cartTimerBig = new Timeline(new KeyFrame(Duration.seconds(0.), new EventHandler<ActionEvent>() {
+    Timeline cartTimerBig = new Timeline(new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>() {
 
         @Override
         public void handle(ActionEvent event) {
