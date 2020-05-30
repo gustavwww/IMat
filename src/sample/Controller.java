@@ -145,6 +145,7 @@ public class Controller implements Initializable {
         fillAllWarningLabelSecond.setVisible(false);
         ButtonThread buttonThread = new ButtonThread();
         buttonThread.setController(this);
+
         buttonThread.start();
 
     }
@@ -386,14 +387,14 @@ public class Controller implements Initializable {
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
            if(shoppingItem.getProduct().equals(product)){
                shoppingItem.setAmount(shoppingItem.getAmount()+amount);
-               //updateCart();
+               updateCart();
                System.out.println("switchar till true");
               addChanged = true;
                return;
            }
        }
        iMatDataHandler.getShoppingCart().addProduct(product,amount);
-       //updateCart();
+       updateCart();
        addChanged = !addChanged;
 
     }

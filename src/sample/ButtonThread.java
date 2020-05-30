@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import se.chalmers.cse.dat216.project.IMatDataHandler;
@@ -43,6 +44,7 @@ public class ButtonThread extends Thread{
                if(controller.nItems == 1){
                    controller.cartFlowPane.getChildren().remove(controller.isEmptyTextFlow);
                    controller.cartFlowPane.getChildren().remove(controller.isEmptyButton);
+
                    controller.shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " vara " + controller.round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
                }
                else if(controller.nItems == 0){
@@ -60,8 +62,6 @@ public class ButtonThread extends Thread{
                controller.shoppingCartButton.setLayoutY(10);
                controller.shoppingCartButton.setFont(Font.font("System", FontWeight.findByWeight(FontWeight.BOLD.getWeight()),14));
                controller.addChanged = false;
-
-
            }
 
 
