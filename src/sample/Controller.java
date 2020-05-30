@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.source.tree.Tree;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -56,8 +55,8 @@ public class Controller implements Initializable {
     private EnumSet<ProductCategory> greens = EnumSet.of(ProductCategory.CABBAGE, ProductCategory.ROOT_VEGETABLE, ProductCategory.VEGETABLE_FRUIT);
     private EnumSet<ProductCategory> drinks = EnumSet.of(ProductCategory.HOT_DRINKS, ProductCategory.COLD_DRINKS);
     private EnumSet<ProductCategory> pantry = EnumSet.of(ProductCategory.FLOUR_SUGAR_SALT, ProductCategory.POTATO_RICE, ProductCategory.PASTA);
-    private boolean wantsToSave = false;
-
+    boolean addChanged = false;
+    int nItems = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -144,6 +143,10 @@ public class Controller implements Initializable {
         updateCart();
         fillAllWarningLabel.setVisible(false);
         fillAllWarningLabelSecond.setVisible(false);
+        ButtonThread buttonThread = new ButtonThread();
+        buttonThread.setController(this);
+        buttonThread.start();
+
     }
 
     private void fillTreeView() {
@@ -383,13 +386,19 @@ public class Controller implements Initializable {
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
            if(shoppingItem.getProduct().equals(product)){
                shoppingItem.setAmount(shoppingItem.getAmount()+amount);
-               updateCart();
+               //updateCart();
+               System.out.println("switchar till true");
+              addChanged = true;
                return;
            }
        }
        iMatDataHandler.getShoppingCart().addProduct(product,amount);
-       updateCart();
+       //updateCart();
+       addChanged = !addChanged;
+
     }
+
+
 
     void removeProduct(double amount, Product product){
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
@@ -417,14 +426,15 @@ public class Controller implements Initializable {
         updateCart();
     }
 
-    private void updateCart(){
-        int items = populateShoppingCart();
-        if(items == 1){
+    synchronized void updateCart(){
+        nItems = populateShoppingCart();
+
+        if(nItems == 1){
             cartFlowPane.getChildren().remove(isEmptyTextFlow);
             cartFlowPane.getChildren().remove(isEmptyButton);
             shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " vara " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         }
-        else if(items == 0){
+        else if(nItems == 0){
             shoppingCartButton.setText("Varukorgen är tom");
             cartFlowPane.getChildren().add(isEmptyTextFlow);
             cartFlowPane.getChildren().add(isEmptyButton);

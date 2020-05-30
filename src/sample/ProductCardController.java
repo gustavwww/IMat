@@ -52,6 +52,7 @@ public class ProductCardController extends AnchorPane {
         if(product.getUnitSuffix().equals("st")||product.getUnitSuffix().equals("förp")){
             if(Double.parseDouble(productCardSpinner.getEditor().getText()) % 1 == 0){
                 parentController.addProduct(Double.parseDouble(productCardSpinner.getEditor().getText()),product);
+                parentController.addChanged = true;
             }
 
             return;
@@ -59,7 +60,7 @@ public class ProductCardController extends AnchorPane {
         if(Double.parseDouble(productCardSpinner.getEditor().getText()) >0) {
 
             parentController.addProduct(Double.valueOf(productCardSpinner.getEditor().getText()), product);
-
+            parentController.addChanged = true;
         }
     }
     @FXML
