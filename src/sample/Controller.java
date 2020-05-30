@@ -1,22 +1,25 @@
 package sample;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import se.chalmers.cse.dat216.project.*;
 
 import java.math.BigDecimal;
@@ -143,10 +146,14 @@ public class Controller implements Initializable {
         updateCart();
         fillAllWarningLabel.setVisible(false);
         fillAllWarningLabelSecond.setVisible(false);
+        cartTimerBig.setCycleCount(1);
+        /*
         ButtonThread buttonThread = new ButtonThread();
         buttonThread.setController(this);
 
         buttonThread.start();
+
+         */
 
     }
 
@@ -383,19 +390,41 @@ public class Controller implements Initializable {
         }
     }
 
+    Timeline cartTimerBig = new Timeline(new KeyFrame(Duration.seconds(0.), new EventHandler<ActionEvent>() {
+
+        @Override
+        public void handle(ActionEvent event) {
+            shoppingCartButton.setPrefHeight(25);
+            shoppingCartButton.setPrefWidth(240);
+            shoppingCartButton.setLayoutX(1010);
+            shoppingCartButton.setLayoutY(10);
+            shoppingCartButton.setFont(Font.font("System", FontWeight.findByWeight(FontWeight.BOLD.getWeight()),14));
+            updateCart();
+        }
+    }));
+
     void addProduct(double amount,Product product){
+        shoppingCartButton.setPrefHeight(40);
+        shoppingCartButton.setPrefWidth(260);
+        shoppingCartButton.setLayoutX(1000);
+        shoppingCartButton.setLayoutY(2.5);
+        shoppingCartButton.setText("Tillagd i varukorg!");
+        shoppingCartButton.setFont(Font.font("System", FontWeight.findByWeight(FontWeight.BOLD.getWeight()),18));
+        cartTimerBig.play();
        for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
            if(shoppingItem.getProduct().equals(product)){
                shoppingItem.setAmount(shoppingItem.getAmount()+amount);
-               updateCart();
+
                System.out.println("switchar till true");
-              addChanged = true;
+               addChanged = true;
                return;
+
+
            }
        }
        iMatDataHandler.getShoppingCart().addProduct(product,amount);
-       updateCart();
-       addChanged = !addChanged;
+
+       addChanged = true;
 
     }
 
