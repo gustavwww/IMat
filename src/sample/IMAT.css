@@ -52,6 +52,10 @@
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10,0,0,1 );
 }
 
+.button:pressed {
+    -fx-background-color: #b82d23;
+}
+
 .titled-pane > .title {
     -fx-background-color: WHITE;
     -fx-border-color: #c9c9c9;
@@ -77,6 +81,11 @@
 
 .tree-cell:hover {
     -fx-background-color: #ec5425;
+    -fx-text-fill: white;
+}
+
+.tree-cell:pressed {
+    -fx-background-color: #b82d23;
     -fx-text-fill: white;
 }
 

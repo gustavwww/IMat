@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="listTitledPane" contentDisplay="RIGHT" expanded="false" graphicTextGap="550.0" prefWidth="1015.0" text="DD MM YR" type="TitledPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="listTitledPane" contentDisplay="RIGHT" expanded="false" graphicTextGap="550.0" prefWidth="1015.0" stylesheets="@IMAT.css" text="DD MM YR" type="TitledPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <font>
       <Font name="System Bold" size="18.0" />
    </font>
@@ -16,7 +16,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
          <graphic>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#buyThisCart" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #ec5425;" text="Lägg till i varukorgen" textFill="WHITE">
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#buyThisCart" prefHeight="30.0" prefWidth="183.0" text="Lägg till i varukorgen" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
