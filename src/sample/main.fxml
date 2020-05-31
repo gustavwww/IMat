@@ -695,7 +695,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
-                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardEnd" style="-fx-background-color: #ff6f00;" text="Slutför och betala" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
+                              <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToWizardEnd" style="-fx-background-color: #ff8c00;" text="Slutför och betala" textFill="WHITE" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="550.0">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
