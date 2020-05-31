@@ -10,7 +10,7 @@
 
 <fx:root fx:id="productCard" onMouseClicked="#goToDetailView" prefHeight="272.0" prefWidth="240.0" style="-fx-border-color: #c9c9c9; -fx-background-color: white;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Spinner fx:id="productCardSpinner" editable="true" layoutX="37.0" layoutY="220.0" prefHeight="35.0" prefWidth="58.0" AnchorPane.leftAnchor="30.0" />
+      <Spinner fx:id="productCardSpinner" editable="true" layoutX="18.0" layoutY="220.0" prefHeight="35.0" prefWidth="72.0" AnchorPane.leftAnchor="17.0" />
       <Button fx:id="addButton" layoutX="112.0" layoutY="220.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="38.0" prefWidth="106.0" text="Lägg till" textFill="WHITE" AnchorPane.rightAnchor="30.0">
          <font>
             <Font name="System Bold" size="16.0" />

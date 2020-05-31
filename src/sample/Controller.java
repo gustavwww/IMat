@@ -346,6 +346,7 @@ public class Controller implements Initializable {
         cartFlowPane.getChildren().clear();
         finishFlowPane.getChildren().clear();
         int products = 0;
+        //int wares = getNWares();
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
             EarlierPurchaseItem item = new EarlierPurchaseItem(this, shoppingItem);
@@ -359,8 +360,8 @@ public class Controller implements Initializable {
            }
         }
         cartPriceTotal.setText("Totalpris: "+round(iMatDataHandler.getShoppingCart().getTotal()+49,2)+" kr"); //+49 i och med frakt
-        cartNumberOffProducts.setText("Totalt "+ iMatDataHandler.getShoppingCart().getItems().size() + " varor");
-        finishNWares.setText("Totalt "+products+" varor");
+        //cartNumberOffProducts.setText("Totalt "+ wares + " varor");
+
         finishTotalWithShipping.setText(""+round(iMatDataHandler.getShoppingCart().getTotal()+49,2) + " kr");
         finishTotal.setText(""+round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         return products;
@@ -396,6 +397,28 @@ public class Controller implements Initializable {
     }));
 
     void addProduct(double amount,Product product){
+
+       for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
+           if(shoppingItem.getProduct().equals(product)){
+               shoppingItem.setAmount(shoppingItem.getAmount()+amount);
+
+               System.out.println("switchar till true");
+               addChanged = true;
+               updateCart();
+               shoppingCartButton.setPrefHeight(40);
+               shoppingCartButton.setPrefWidth(260);
+               shoppingCartButton.setLayoutX(1000);
+               shoppingCartButton.setLayoutY(2.5);
+               shoppingCartButton.setText("Tillagd i varukorg!");
+               shoppingCartButton.setFont(Font.font("System", FontWeight.findByWeight(FontWeight.BOLD.getWeight()),18));
+               cartTimerBig.play();
+               return;
+
+
+           }
+       }
+       iMatDataHandler.getShoppingCart().addProduct(product,amount);
+       updateCart();
         shoppingCartButton.setPrefHeight(40);
         shoppingCartButton.setPrefWidth(260);
         shoppingCartButton.setLayoutX(1000);
@@ -403,19 +426,6 @@ public class Controller implements Initializable {
         shoppingCartButton.setText("Tillagd i varukorg!");
         shoppingCartButton.setFont(Font.font("System", FontWeight.findByWeight(FontWeight.BOLD.getWeight()),18));
         cartTimerBig.play();
-       for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
-           if(shoppingItem.getProduct().equals(product)){
-               shoppingItem.setAmount(shoppingItem.getAmount()+amount);
-
-               System.out.println("switchar till true");
-               addChanged = true;
-               return;
-
-
-           }
-       }
-       iMatDataHandler.getShoppingCart().addProduct(product,amount);
-
        addChanged = true;
 
     }
@@ -447,14 +457,28 @@ public class Controller implements Initializable {
         }
         updateCart();
     }
+    private int getNWares(){
+        int wares = 0;
+        for(ShoppingItem  shoppingItem: iMatDataHandler.getShoppingCart().getItems()){
+            if(shoppingItem.getProduct().getUnitSuffix().equals("kg")){
+                wares = wares +1;
 
-    synchronized void updateCart(){
+            }
+            else{
+                wares = wares + (int)shoppingItem.getAmount();
+            }
+        }
+        return wares;
+    }
+     void updateCart(){
         nItems = populateShoppingCart();
-
+        int wares = getNWares();
+        cartNumberOffProducts.setText("Totalt "+wares+" varor");
+         finishNWares.setText("Totalt "+wares+" varor");
         if(nItems == 1){
             cartFlowPane.getChildren().remove(isEmptyTextFlow);
             cartFlowPane.getChildren().remove(isEmptyButton);
-            shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " vara " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
+            shoppingCartButton.setText(wares + " vara " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         }
         else if(nItems == 0){
             shoppingCartButton.setText("Varukorgen är tom");
@@ -462,7 +486,7 @@ public class Controller implements Initializable {
             cartFlowPane.getChildren().add(isEmptyButton);
         }
         else{
-            shoppingCartButton.setText(iMatDataHandler.getShoppingCart().getItems().size() + " varor - " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
+            shoppingCartButton.setText(wares + " varor - " + round(iMatDataHandler.getShoppingCart().getTotal(),2) + " kr");
         }
 
     }
