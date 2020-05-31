@@ -147,14 +147,6 @@ public class Controller implements Initializable {
         fillAllWarningLabel.setVisible(false);
         fillAllWarningLabelSecond.setVisible(false);
         cartTimerBig.setCycleCount(1);
-        /*
-        ButtonThread buttonThread = new ButtonThread();
-        buttonThread.setController(this);
-
-        buttonThread.start();
-
-         */
-
     }
 
     private void fillTreeView() {
@@ -357,7 +349,7 @@ public class Controller implements Initializable {
         for(ShoppingItem shoppingItem : iMatDataHandler.getShoppingCart().getItems()){
             cartFlowPane.getChildren().add(new ShoppingCartLevelController(shoppingItem.getProduct(),this,shoppingItem.getAmount()));
             EarlierPurchaseItem item = new EarlierPurchaseItem(this, shoppingItem);
-            item.setPrefWidth(1077);
+            item.setPrefWidth(1070);
             finishFlowPane.getChildren().add(item);
             if(shoppingItem.getProduct().getUnit().equals("kg")){
                 products = products+1;
